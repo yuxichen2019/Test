@@ -55,4 +55,4 @@ class MyTimer():
                 prompt += (str(result[q]) + self.unit[q])
         return prompt
 
-#再GIT一次
+#123
