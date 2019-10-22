@@ -7,14 +7,14 @@
 
 #错误示例：
 
-class Person(object):
-    def __init__(self, name):
-        self.name = name
-    @property  # 把eat方法变为属性方法
-    def eat(self):
-        print("%s is eating" % self.name)
-d = Person("xiaoming")
-d.eat()
+# class Person(object):
+#     def __init__(self, name):
+#         self.name = name
+#     @property  # 把eat方法变为属性方法
+#     def eat(self):
+#         print("%s is eating" % self.name)
+# d = Person("xiaoming")
+# d.eat()
 
 #结果：TypeError: 'NoneType' object is not callable
 #因为eat此时已经变成一个属性了， 不是方法了， 想调用已经不需要加()号了，直接d.eat就可以了
@@ -26,4 +26,4 @@ class Person(object):
     def eat(self):
         print("%s is eating" % self.name)
 d = Person("xiaoming")
-d.eat()
+d.eat
