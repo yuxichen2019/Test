@@ -4,6 +4,8 @@
 # switch_to.iframe.py 
 # hanwenlu
 
+
+#定位内嵌表单的元素
 from selenium import webdriver
 
 dr = webdriver.Chrome()
