@@ -1,3 +1,4 @@
+#显性等待
 from time import sleep,ctime
 from selenium import webdriver
 
