@@ -1,5 +1,5 @@
 import time as t
-class MyTimer():
+class MyTimer:
 
     def __init__(self):
         self.unit = ['年','月','天','小时','分钟','秒']
@@ -37,8 +37,8 @@ class MyTimer():
             if self.lasted[i]:
                 self.prompt += (str(self.lasted[i]) + self.unit[i])
         #为下一轮计算初始化变量
-        #self.begin = 0
-        #self.end = 0
+        self.begin = 0
+        self.end = 0
 
     def __add__(self,other):
         prompt='两者总共运行了'
@@ -50,3 +50,8 @@ class MyTimer():
                 prompt += (str(result[q]) + self.unit[q])
         return prompt 
 
+t1=MyTimer()
+t1.start()
+
+t1.stop()
+print(t1)
