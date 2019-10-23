@@ -5,6 +5,8 @@ from selenium.common.exceptions import NoSuchElementException
 driver =webdriver.Chrome()
 
 driver.implicitly_wait(10)
+
+
 driver.get('https://www.baidu.com')
 
 try:
