@@ -8,11 +8,11 @@
 #text:返回alert confirm prompt中的文字信息
 #accept（）：接受现有警告框。
 #dismiss():解散现有警告框
-#send_keys():
 
 from time import sleep
 
 from selenium import webdriver
+
 from selenium.webdriver import ActionChains
 
 dr = webdriver.Chrome()
@@ -28,6 +28,7 @@ sleep(2)
 dr.find_element_by_class_name('prefpanelgo').click()
 
 sleep(3)
+
 alret = dr.switch_to.alert
 
 alret_text = alret.text
