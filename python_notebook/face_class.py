@@ -26,4 +26,3 @@ class Bullet(object):
             super(Bullet,self).__init__()
             self.power = temp_power
 
-    def
