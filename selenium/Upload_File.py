@@ -12,6 +12,8 @@ from time import sleep
 from selenium.webdriver.support.select import Select
 import os
 
+
+
 dr = webdriver.Chrome()
 dr.get('http://192.168.1.104:7300/html/index.html')
 dr.maximize_window()
@@ -21,9 +23,10 @@ dr.find_element_by_xpath("//input[@class='lg_login_user_input']").send_keys('adm
 dr.find_element_by_xpath("//input[@class='lg_login_pw_input']").send_keys('123456')
 dr.find_element_by_xpath("//div[@class='lg_login_btn_lg']").click()
 sleep(2)
-
+#卡片管理
 dr.find_element_by_xpath("/html/body/div/div[1]/div/div[4]/div[3]/p/span[2]").click()
 sleep(1)
+#流量卡管理
 dr.find_element_by_xpath('/html/body/div/div[1]/div/div[4]/div[3]/div[1]/p/span').click()
 sleep(1)
 dr.find_element_by_xpath("//div[@val='入库']").click()
@@ -51,4 +54,7 @@ dr.find_element_by_xpath('//*[@id="daoruSave"]').click()
 sleep(1)
 dr.find_element_by_link_text('确定').click()
 sleep(1)
+
+
+
 dr.quit()
