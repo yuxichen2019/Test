@@ -135,3 +135,34 @@ def main():
 
 if __name__=='__main__':
     main()
+
+
+
+
+class Person(object):
+    def __init__(self,name,hp,gun):
+        super().__init__()
+        self.name =  name
+        self.hp = hp
+        self.gun = None
+
+    def anzhuang_zidan(self,danjia,zidan):
+
+
+
+
+
+
+
+
+
+
+
+
+class Zidan(object):
+    def __init__(self,power):
+        super().__init__()
+        self.power = power
+
+    def dazhongren(self,diren):
+        diren.diaoxue(self.power)
