@@ -24,8 +24,6 @@ class Movie:
     rating = NonNeg()   #描述符就是将某种特殊类型的类指派给另一个类的类属性。特殊属性的类里边至少要定义__get__,__set__,__delete__三个特殊方法中的任意一个。
     score = NonNeg()
 
-
-
 if __name__ == '__main__':
     m = Movie()
     print('rating:',m.rating)
