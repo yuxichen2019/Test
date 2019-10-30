@@ -139,14 +139,6 @@ if __name__=='__main__':
 
 
 
-class Person(object):
-    def __init__(self,name,hp,gun):
-        super().__init__()
-        self.name =  name
-        self.hp = hp
-        self.gun = None
-
-    def anzhuang_zidan(self,danjia,zidan):
 
 
 

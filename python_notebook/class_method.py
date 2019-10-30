@@ -33,3 +33,7 @@ class Person(object):
 d = Person("xiaoming")
 d.eat()
 
+
+
+
+
