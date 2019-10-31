@@ -19,3 +19,5 @@ dr.add_cookie({'name':'key_aaaaaaaaa','value':'key_bbbbbbbbbbbb'})
 #遍历指定的Cookies
 for cookie in dr.get_cookies():
     print('%s ----->  %s' % (cookie['name'],cookie['value']))
+
+dr.quit()
