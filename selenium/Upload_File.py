@@ -22,7 +22,7 @@ sleep(1)
 dr.find_element_by_xpath("//input[@class='lg_login_user_input']").send_keys('admin')
 dr.find_element_by_xpath("//input[@class='lg_login_pw_input']").send_keys('123456')
 dr.find_element_by_xpath("//div[@class='lg_login_btn_lg']").click()
-sleep(1)
+sleep(2)
 
 #卡片管理
 dr.find_element_by_xpath("/html/body/div/div[1]/div/div[4]/div[3]/p/span[2]").click()
@@ -50,7 +50,15 @@ Select(sel_e_p).select_by_value('510WLW025581_PRE-IND_1024M_Merged') #广东联�
 file_path = os.path.abspath(r'E:\yuxichen\file\ruku_iccid.xlsx')
 dr.find_element_by_id('daoruFile').send_keys(file_path)
 #添加备注信息
-dr.find_element_by_xpath('//*[@id="huaboRemark"]').send_keys('自动化测试-入库')
+#dr.find_element_by_xpath('//*[@id="huaboRemark"]').send_keys('自动化测试-入库')
+
+#添加备注信息尝试另一种方法：
+text = '自动化测试 入库2'
+js = "document.getElementById('huaboRemark').value = '" + text + "';"
+dr.execute_script(js)
+
+
+
 dr.find_element_by_xpath('//*[@id="daoruSave"]').click()
 sleep(1)
 dr.find_element_by_link_text('确定').click()
