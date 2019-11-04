@@ -39,17 +39,17 @@ wait.until(lambda driver: driver.find_element_by_id("switchAccountLogin"))
 
 driver.find_element_by_id('switchAccountLogin').click()
 
-# login_frame = driver.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
-#
-# driver.switch_to.frame(login_frame)
-#
-# driver.find_element_by_name('email').send_keys('582732974@qq.com')
-#
-# driver.find_element_by_name('password').send_keys('xxxxxxx')
-#
-# driver.find_element_by_id('dologin').click()
-#
-# #回到最外层的页面
-# driver.switch_to.default_content()
-#
-# driver.quit()
+login_frame = driver.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
+
+driver.switch_to.frame(login_frame)
+
+driver.find_element_by_name('email').send_keys('582732974@qq.com')
+
+driver.find_element_by_name('password').send_keys('xxxxxxx')
+
+driver.find_element_by_id('dologin').click()
+
+#回到最外层的页面
+driver.switch_to.default_content()
+
+driver.quit()
