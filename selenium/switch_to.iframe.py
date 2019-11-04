@@ -40,3 +40,10 @@ dr.switch_to.frame(login_frame)
 dr.find_element_by_name('email').send_keys('582732974@qq.com')
 
 dr.find_element_by_name('password').send_keys('xxxxxxx')
+
+dr.find_element_by_id('dologin').click()
+
+#回到最外层的页面
+dr.switch_to.default_content()
+
+dr.quit()
