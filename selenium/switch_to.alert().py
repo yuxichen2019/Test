@@ -4,6 +4,7 @@
 # super_1.py 
 # hanwenlu
 
+
 #警告框处理
 #text:返回alert confirm prompt中的文字信息
 #accept（）：接受现有警告框。
