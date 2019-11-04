@@ -14,10 +14,6 @@ import selenium.webdriver.support.ui as ui
 driver = webdriver.Chrome()
 
 
-
-
-
-
 # try:
 #     print(ctime())
 #     dr.find_element_by_id('switchAccountLogin')
@@ -27,8 +23,6 @@ driver = webdriver.Chrome()
 #
 # finally:
 #     print(ctime())
-
-
 
 #dr.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/div[3]/div[4]/a[1]').click()
 #dr.find_element_by_id("switchAccountLogin").click()
