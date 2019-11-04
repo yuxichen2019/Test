@@ -5,6 +5,12 @@
 # hanwenlu
 
 
+#get_cookies():  获得所有的Cookies.
+#get_cookie(name)  返回字典中的key为name的Cookies
+#add_cookie(cookie_dict):  添加cookie.
+#delete_cookie(name,optionString)   删除名字为optionString的Cookies
+#delete_all_cookies    删除所有的Cookies
+
 from selenium import webdriver
 dr = webdriver.Chrome()
 dr.get("http://www.baidu.com")
