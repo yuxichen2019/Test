@@ -37,3 +37,5 @@ sleep(15)
 
 print('Stop')
 dr.execute_script('arguments[0].pause()',video)
+
+dr.quit()
