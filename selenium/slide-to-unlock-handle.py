@@ -5,6 +5,9 @@
 # hanwenlu
 
 
+#click_and_hold() : 单机并按下鼠标左键
+#move_by_offset() : 移动鼠标，第一个参数X坐标距离，第二个为Y
+#reset_action()   : 重置action
 
 from time import sleep
 from selenium import  webdriver
