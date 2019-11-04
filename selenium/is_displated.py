@@ -23,4 +23,5 @@ else:
     print('timeout')
 
 print(ctime())
+
 driver.quit()
