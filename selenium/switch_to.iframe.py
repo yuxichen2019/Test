@@ -10,12 +10,12 @@ from time import ctime
 from selenium import webdriver
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
+import selenium.webdriver.support.ui as ui
+driver = webdriver.Chrome()
 
-dr = webdriver.Chrome()
 
-dr.get('https://www.126.com')
-sleep(2)
-dr.maximize_window()
+
+
 
 
 # try:
@@ -31,19 +31,25 @@ dr.maximize_window()
 
 
 #dr.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/div[3]/div[4]/a[1]').click()
-dr.find_element_by_class_name('u-login-entry u-126-login-entry').click()  #//*[@id="switchAccountLogin"]
+#dr.find_element_by_id("switchAccountLogin").click()
+#//*[@id="switchAccountLogin"]
+wait = ui.WebDriverWait(driver,10)
+driver.get('https://www.126.com')
+wait.until(lambda driver: driver.find_element_by_id("switchAccountLogin"))
 
-login_frame = dr.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
+driver.find_element_by_id('switchAccountLogin').click()
 
-dr.switch_to.frame(login_frame)
-
-dr.find_element_by_name('email').send_keys('582732974@qq.com')
-
-dr.find_element_by_name('password').send_keys('xxxxxxx')
-
-dr.find_element_by_id('dologin').click()
-
-#回到最外层的页面
-dr.switch_to.default_content()
-
-dr.quit()
+# login_frame = driver.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
+#
+# driver.switch_to.frame(login_frame)
+#
+# driver.find_element_by_name('email').send_keys('582732974@qq.com')
+#
+# driver.find_element_by_name('password').send_keys('xxxxxxx')
+#
+# driver.find_element_by_id('dologin').click()
+#
+# #回到最外层的页面
+# driver.switch_to.default_content()
+#
+# driver.quit()
