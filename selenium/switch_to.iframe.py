@@ -6,16 +6,32 @@
 
 
 #定位内嵌表单的元素
+from time import ctime
 from selenium import webdriver
+from time import sleep
+from selenium.common.exceptions import NoSuchElementException
 
 dr = webdriver.Chrome()
 
 dr.get('https://www.126.com')
-
+sleep(2)
 dr.maximize_window()
 
 
-dr.find_element_by_id('switchAccountLogin').click()
+# try:
+#     print(ctime())
+#     dr.find_element_by_id('switchAccountLogin')
+#
+# except  NoSuchElementException as e:
+#     print(e)
+#
+# finally:
+#     print(ctime())
+
+
+
+#dr.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/div[3]/div[4]/a[1]').click()
+dr.find_element_by_class_name('u-login-entry u-126-login-entry').click()  #//*[@id="switchAccountLogin"]
 
 login_frame = dr.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
 
