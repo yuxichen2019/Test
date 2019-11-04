@@ -21,7 +21,7 @@ dr.maximize_window()
 
 above = dr.find_element_by_link_text('设置')
 #采用鼠标悬停
-ActionChains(dr).move_to_element(above).perform()
+ActionChains(dr).move_to_element(above).perform() #执行ActionChains类中存储的所有行为
 dr.find_element_by_link_text('搜索设置').click()
 sleep(2)
 
