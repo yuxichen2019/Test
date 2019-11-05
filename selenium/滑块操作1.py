@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 # 2019/11/01 16:58 
 # Test
-# slide-to-unlock-handle.py 
+# slide-to-unlock-handle.py
 # hanwenlu
 
 
@@ -9,9 +9,13 @@
 #move_by_offset() : 移动鼠标，第一个参数X坐标距离，第二个为Y
 #reset_action()   : 重置action
 
+#slide-to-unlock-progress 表示滑过之后的背景色
+#slide-to-unlock-handle 表示滑块
+#方法一：ActionChains
+
 from time import sleep
 from selenium import  webdriver
-from  selenium.webdriver import  ActionChains
+from selenium.webdriver import  ActionChains
 from selenium.common.exceptions import UnexpectedAlertPresentException
 
 dr = webdriver.Chrome()
@@ -25,7 +29,6 @@ for index in range(200):
     try:
         #移动鼠标，x,y
         action.move_by_offset(2,0).perform()
-
     except UnexpectedAlertPresentException:
         break
 
@@ -35,3 +38,9 @@ for index in range(200):
 
 success_text = dr.switch_to.alert.text
 print(success_text)
+
+
+
+
+
+
