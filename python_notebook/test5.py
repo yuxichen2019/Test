@@ -166,11 +166,9 @@ if __name__ == '__main__':
 
 
 #装饰模式
-#
 class BeDeco:
     def be_edit_fun(self):
         print('Source fun')
-
     def be_keep_fun(self):
         print('Keep fun')
 
@@ -180,7 +178,6 @@ class Decorater:
     def be_edit_fun(self): #定义被装饰类中需要被修改的方法
         print('Start....')
         self._dec.be_edit_fun()
-
     def be_keep_fun(self):#不做修改
         self._dec.be_keep_fun()
 if __name__ == '__main__':
@@ -206,7 +203,7 @@ class Deco:#定义被装饰类
         print(self.name)
 
 class Sugar(Deco):
-    def __init__(self,water):  #参数为water的实例
+    def __init__(self,water):  #参数为Water的实例
         self.name = 'Sugar'
         self.water = water
     def show(self):
@@ -229,3 +226,28 @@ if __name__ == '__main__':
 
     s = Salt(w)
     s.show()
+
+
+
+#类装饰器
+def deco(a_class):
+    class NewClass:
+        def __init__(self,age,color):
+            self.wrapped =  a_class(age) #对传进来的类进行实例化
+            self.color = color
+
+        def display(self):
+            print(self.color)
+            print(self.wrapped.age)
+    return NewClass
+
+@deco
+class Cat:     #将Cat这个类传入a_class,然后做一个新类 进行包装 返回包装后的类
+    def __init__(self,age):
+        self.age = age
+    def display(self):
+        print(self.age)
+
+if __name__ == '__main__':
+    c = Cat(12,'while')
+    c.display()   #Cat类本来只有age属性   装饰后  多了一个属性color
