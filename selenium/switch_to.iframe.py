@@ -29,9 +29,10 @@ dr.maximize_window()
 #     print(ctime())
 
 
+dr.find_element_by_link_text('密码登录').click()
 
 #dr.find_element_by_xpath('/html/body/div[2]/div[3]/div/div[3]/div[3]/div[4]/a[1]').click()
-dr.find_element_by_class_name('u-login-entry u-126-login-entry').click()  #//*[@id="switchAccountLogin"]
+#dr.find_element_by_class_name('u-login-entry u-126-login-entry').click()  #//*[@id="switchAccountLogin"]
 
 login_frame = dr.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
 
@@ -46,4 +47,4 @@ dr.find_element_by_id('dologin').click()
 #回到最外层的页面
 dr.switch_to.default_content()
 
-dr.quit()
+#dr.quit()
