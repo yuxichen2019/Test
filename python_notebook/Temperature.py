@@ -9,7 +9,7 @@
 #给摄氏度赋值  自动计算出华氏度
 #描述符  摄氏度
 class Celsius:
-    def __init__(self, value=37):
+    def __init__(self, value=26):
         self.value = float(value)
     def __get__(self, instance, owner):
         return self.value
@@ -31,7 +31,6 @@ temp = Temperature()
 #设置摄氏度30  求华氏度
 temp.cel=30
 print(temp.fah)
-
 #华氏度86  求摄氏度
 temp.fah = 86
 print(temp.cel)
