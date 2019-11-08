@@ -4,12 +4,12 @@
 		<platform>Windows</platform>
 		<platform>Linux</platform>
 		<platform>macOS</platform>
-	<platforms>
+	</platforms>
 	<browsers>
-		<browser>Firefox<browser>
-		<browser>Chrome<browser>
-		<browser>Edge<browser>
-	</browser>
+		<browser>Firefox</browser>
+		<browser>Chrome</browser>
+		<browser>Edge</browser>
+	</browsers>
 	<url>http://www.baidu.com</url>
 		<login username="admin" password="123456"/>
 		<login username="guest" password="654321"/>

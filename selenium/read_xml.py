@@ -12,7 +12,8 @@ dom = parse("./data_file/config.xml")
 #得到文档元素对象
 root= dom.documentElement
 #获取（一组）标签
-tag_name = root.getElementsByTagName('os')
+tag_name = root.getElementsByTagName('browser')   #垃圾书本，到处是错的    getElementsByTagNam()获取文件中的标签。
+
 
 print(tag_name[0].firstChild.data)
 print(tag_name[1].firstChild.data)
