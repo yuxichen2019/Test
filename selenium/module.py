@@ -16,8 +16,8 @@ class Mail:
 
         lg = self.driver.find_element_by_css_selector('iframe[id^="x-URS-iframe"]')
         self.driver.switch_to.frame(lg)
-        self.driver.find_element_by_name('email').clear()
-        self.driver.find_element_by_name('email').send_keys('Y15112342277')
+        self.driver.find_element_by_name("email").clear()
+        self.driver.find_element_by_name("email").send_keys('Y15112342277')
         self.driver.find_element_by_name('password').clear()
         self.driver.find_element_by_name('password').send_keys('yxc123456')
         self.driver.find_element_by_id('dologin').click()
