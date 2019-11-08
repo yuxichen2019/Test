@@ -5,8 +5,10 @@
 # company
 
 from xml.dom.minidom import parse
+
 #打开xml文件
 dom = parse("./data_file/config.xml")
+
 #得到文档元素对象
 root= dom.documentElement
 #获取（一组）标签
