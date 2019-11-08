@@ -6,10 +6,10 @@
 		<platform>macOS</platform>
 	<platforms>
 	<browsers>
-		<browsers>Firefox<browsers>
-		<browsers>Chrome<browsers>
-		<browsers>Edge<browsers>
-	</browsers>
+		<browser>Firefox<browser>
+		<browser>Chrome<browser>
+		<browser>Edge<browser>
+	</browser>
 	<url>http://www.baidu.com</url>
 		<login username="admin" password="123456"/>
 		<login username="guest" password="654321"/>

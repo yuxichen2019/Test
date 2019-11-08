@@ -30,7 +30,7 @@ from module import Mail
 
 import csv
 with open("./data_file/user_info.csv") as f:
-    reader = csv.reader(f)
+    reader = csv.reader(f)      #这一句才是重点
     users = []
     for line in islice(reader,1,None):
 
