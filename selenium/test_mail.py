@@ -31,10 +31,10 @@ mail.login(users[0][0],users[0][1])
 #账号密码错误
 #mail.login(users[4][0],users[4][1])
 
-sleep(2)
-mail.logout()
-sleep(1)
-driver.quit()
+# sleep(2)
+# mail.logout()
+# sleep(1)
+# driver.quit()
 
 
 
