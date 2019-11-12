@@ -73,11 +73,14 @@ if __name__ == '__main__':
 #     最后，调用unittest的main方法来执行用例，他会按前面的两条规则执行。
 # '''
 # if __name__ == '__main__':
+#     #创建测试套件
 #     suit = unittest.TestSuite()
 #     suit.addTest(TestCalculator('test_add'))
 #     suit.addTest(TestCalculator('test_sub'))
 #     suit.addTest(TestCalculator('test_mul'))
 #     suit.addTest(TestCalculator('test_div'))
+
+#     #创建测试运行器
 #     runner = unittest.TextTestRunner()
 #     runner.run(suit)
 
