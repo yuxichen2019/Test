@@ -11,11 +11,11 @@ from leap_year import LeapYear
 class TsetLeapYear(unittest.TestCase):
     def test_2000(self):
         le = LeapYear(2000)
-        self.assertEqual(le.answer(),'2000不是闰年')
+        self.assertEqual(le.answer(),'2000是闰年')
 
     def test_2019(self):
         le = LeapYear(2019)
-        self.assertEqual(le.answer(),'2019是闰年')
+        self.assertEqual(le.answer(),'2019不是闰年')
 
     def test_2100(self):
         le = LeapYear(2100)
