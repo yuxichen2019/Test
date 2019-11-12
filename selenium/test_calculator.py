@@ -36,6 +36,11 @@ import unittest
 from calculator import Calculator
 
 class TestCalculator(unittest.TestCase):
+    def setUp(self):                        #执行每条用例的前置后置动作
+        print('test start......')
+    def tearDown(self):
+        print('test end......')
+
     def test_add(self):
         c = Calculator(3, 5)
         result = c.add()
@@ -47,7 +52,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(result,5)
 
     def test_mul(self):
-        c = Calculator(3, 4)
+        c = Calculator(4, 4)
         r = c.mul()
         self.assertEqual(r,12)
 
@@ -56,16 +61,22 @@ class TestCalculator(unittest.TestCase):
         r = c.div()
         self.assertEqual(r,2)
 
-if __name__ == '__main__':
-    unittest.main()
-
+# if __name__ == '__main__':
+#     unittest.main()
 '''
     单元测试的规则：
-    1.创建一个测试类，这里为TsetCalculator,必须要继承unittest模块的Test类。
+    1.创建一个测试类，这里为TsetCalculator,必须要继承unittest模块的TestCase类。
     2.创建一个测试方法，该方法必须以test开头。
-    
     接下来的测试步骤与前面测试代码相同。
     首先，调用被测试类，传入初始化数据。
     其次，调用被测试方法，得到计算结果。通过unittest提供的assertEqual()方法来判断  断言。该方法有TestCase父类提供，由于继承了该类，所以可以由self调用。
     最后，调用unittest的main方法来执行用例，他会按前面的两条规则执行。
 '''
+if __name__ == '__main__':
+    suit = unittest.TestSuite()
+    suit.addTest(TestCalculator('test_add'))
+    suit.addTest(TestCalculator('test_sub'))
+    suit.addTest(TestCalculator('test_mul'))
+    suit.addTest(TestCalculator('test_div'))
+    runner = unittest.TextTestRunner()
+    runner.run(suit)
