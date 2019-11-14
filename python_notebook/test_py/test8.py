@@ -39,3 +39,4 @@ class MyDes:
     def __delete__(self, instance):
         os.remove(self.filename)
         MyDes.saved.remove(self.name)
+
