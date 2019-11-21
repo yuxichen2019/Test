@@ -26,37 +26,36 @@ import json
 
 millis = str(int(round(time.time() * 1000)))
 dic = {
-    "method": "sohan.m2m.iccid.customerBagList",
     "username": "一级客户",
     "timestamp": millis,
-    "ctime":""
+    "ctime":"",
+    "method":"sohan.m2m.iccid.customerBagList"
 }
 def sign(**dic):
     dict1 = {}
     dict2 = {}
-    val=0
+    #过滤值为空的
     for i in dic.keys():
         if dic.get(i) == '' or dic.get(i) == None:
             pass
         else:
-            val = int(ord(i[0]))
-            #print(i[0],val)
-            dict1[i] = val
+            dict1[i] = dic[i]
+    #print('dict1:',dict1)
     stringA = ''
-    print(dict1)
-    for k in sorted(dict1, key=dict1.__getitem__):
+    for k in sorted(dict1):
         stringA += (k + '=' + dic[k] + '&')
+    #print(stringA)
     stringSignTemp = stringA + 'key=HNlWEvapIcnHIwvWK55lz79j5AKlQQd9'
-    print(stringSignTemp)
+    #print(stringSignTemp)
     md5 = hashlib.md5()
     md5.update(stringSignTemp.encode(encoding='utf-8'))
+    #md5.hexdigest()返回的是十六进制
     sign = md5.hexdigest()
+    #转为大写
     signValue = sign.upper()
-    dic['sign'] = signValue
-    for p in sorted(dic):
-        if dic.get(p) == '' or dic.get(p) == None:
-            pass
-        else:
-            dict2[p] = dic[p]
-    print(json.dumps(dict2, ensure_ascii=False).replace(',', ', '))
+    dict1['sign'] = signValue
+    for p in sorted(dict1):
+        dict2[p]=dict1[p]
+    print(json.dumps(dict2,ensure_ascii=False).replace(', ',',').replace(': ',':')) #ensure_ascii=False对中文不转化
+    #print(json.dumps(dict2,indent=4,ensure_ascii=False))
 sign(**dic)
