@@ -16,6 +16,7 @@ import bs4
 headers = {"user-agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"}
 res = requests.get('https://movie.douban.com/top250',headers=headers)
 #requests.get()用于请求目标网站，类型是一个HTTPresponse类型
+
 print(res.text)
 
 print('--------------------------------------------------------------------')
@@ -25,4 +26,6 @@ targets = soup.find_all('div',class_='hd') #find_all()方法找到所有class =�
 print(targets)
 for i in targets:
 	print(i.a.span.text)
+
+
 
