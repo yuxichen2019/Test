@@ -4,22 +4,6 @@
 # MD5.py 
 # company
 
-#
-#
-# dict = {"method":"sohan.m2m.iccid.customerBagList","username":"一级客户","timestamp":"1574302713314"}
-# a=[]
-# for a in dict.keys():
-#     a.append(ord(a[0]))
-#     if a.count(ord(a[0]))>1:
-#
-
-# string=[]
-# for x in dict1.items():
-#     string.append(x)
-#
-# print(string)
-# for i in string:
-
 import hashlib
 import time
 import json
@@ -56,6 +40,6 @@ def sign(**dic):
     dict1['sign'] = signValue
     for p in sorted(dict1):
         dict2[p]=dict1[p]
-    print(json.dumps(dict2,ensure_ascii=False).replace(', ',',').replace(': ',':')) #ensure_ascii=False对中文不转化
-    #print(json.dumps(dict2,indent=4,ensure_ascii=False))
+    #print(json.dumps(dict2,ensure_ascii=False)) #ensure_ascii=False对中文不转化
+    print(json.dumps(dict2,indent=4,ensure_ascii=False))
 sign(**dic)
