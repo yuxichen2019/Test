@@ -10,10 +10,10 @@ import json
 
 millis = str(int(round(time.time() * 1000)))
 dic = {
-    "username": "一级客户",
+    "username": "广联",
     "timestamp": millis,
-    "ctime":"",
-    "method":"sohan.m2m.iccid.customerBagList"
+    "iccid":"89860619000012298059",
+    "method":"sohan.m2m.bag.doubleBag"
 }
 def sign(**dic):
     dict1 = {}
@@ -29,7 +29,7 @@ def sign(**dic):
     for k in sorted(dict1):
         stringA += (k + '=' + dic[k] + '&')
     #print(stringA)
-    stringSignTemp = stringA + 'key=HNlWEvapIcnHIwvWK55lz79j5AKlQQd9'
+    stringSignTemp = stringA + 'key=MBKObITf817FqgyYjX06FSQWRCE1RFXF'
     #print(stringSignTemp)
     md5 = hashlib.md5()
     md5.update(stringSignTemp.encode(encoding='utf-8'))
@@ -40,6 +40,6 @@ def sign(**dic):
     dict1['sign'] = signValue
     for p in sorted(dict1):
         dict2[p]=dict1[p]
-    #print(json.dumps(dict2,ensure_ascii=False)) #ensure_ascii=False对中文不转化
-    print(json.dumps(dict2,indent=4,ensure_ascii=False))
+    print(json.dumps(dict2,ensure_ascii=False)) #ensure_ascii=False对中文不转化
+    #print(json.dumps(dict2,indent=4,ensure_ascii=False))
 sign(**dic)
