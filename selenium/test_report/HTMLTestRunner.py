@@ -635,6 +635,7 @@ class _TestResult(TestResult):
 class HTMLTestRunner(Template_mixin):
     """
     """
+    #stream：指定生成HTML测试报告的文件，必填。verbosity日志级别，title用例标题，description描述
     def __init__(self, stream=sys.stdout, verbosity=1, title=None, description=None):
         self.stream = stream
         self.verbosity = verbosity
