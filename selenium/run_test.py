@@ -3,7 +3,7 @@
 # Test
 # run_test.py.py 
 # company
-
+import time
 import unittest
 from HTMLTestRunner import HTMLTestRunner
 
@@ -13,7 +13,10 @@ suit = unittest.defaultTestLoader.discover(test_dir,pattern='test*.py')
 
 if __name__ == '__main__':
     #生成HTML格式的报告
-    fp = open('./test_report/result.html','wb')
+    now_time = time.strftime('%Y-%m-%d %H_%M_%S')
+    print(now_time+'result.html')
+    fp = open('./test_report/'+ now_time +'result.html','wb')
+    #fp = open('./test_report/result.html', 'wb')
     runner = HTMLTestRunner(stream=fp,title='百度搜索测试报告',description="运行环境：win10,Chrome浏览器")
     runner.run(suit)
     fp.close()
