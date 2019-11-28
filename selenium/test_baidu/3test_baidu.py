@@ -40,5 +40,6 @@ class TestBaidu(unittest.TestCase):
     def test_search_c(self):
         self.baidu_search(self.test_data[2][1])
 
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
