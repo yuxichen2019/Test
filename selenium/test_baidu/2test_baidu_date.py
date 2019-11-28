@@ -29,7 +29,7 @@ class TestBaidu(unittest.TestCase):
         sleep(3)
 
     def test_search(self):
-        with codecs.open(r'E:\yuxichen\Test\selenium\data_file\baidu_data.csv','r','utf-8') as f:
+        with codecs.open(r'E:\yuxichen\Test\selenium\data_file\baidu_data.csv','r','utf_8_sig') as f:
             data = csv.reader(f)
             for line in islice(data,1,None):
                 print(line)
