@@ -34,11 +34,11 @@ class TestBaidu(unittest.TestCase):
     #     self.assertEqual(self.driver.title,search_key+'_百度搜索')
     def test_baidu_search_case1(self):
         page=BaiduPage(self.driver)
-        page.open()
-        page.search_input('selenium')
-        page.search_button()
+        page.get('https://www.baidu.com')
+        page.search_input='selenium'
+        page.search_button.click()
         sleep(2)
-        self.assertEqual(page.get_title(),"selenium_百度搜索")
+        self.assertEqual(self.driver.title,"selenium_百度搜索")
 
     @classmethod
     def tearDownClass(cls):
@@ -46,3 +46,4 @@ class TestBaidu(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+
