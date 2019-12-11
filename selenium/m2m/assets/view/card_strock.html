@@ -1,0 +1,678 @@
+<style>
+	#dataCon_cs .viewC_con {
+		height: 400px !important;
+		overflow: auto !important;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 10px 0px;
+		clear: both;
+		transition: all 0.3s ease 0s;
+	}
+	
+	#dataCon_cs .recording {
+		position: absolute;
+		top: 28%;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	/*模态框*/
+	
+	#dataCon_cs .modal {
+		display: none;
+		/* 默认隐藏 */
+		position: fixed;
+		/* 根据浏览器定位 */
+		z-index: 1301;
+		/* 放在顶部 */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* 全宽 */
+		height: 100%;
+		/* 全高 */
+		overflow: auto;
+		/* 允许滚动 */
+		background-color: rgba(0, 0, 0, 0.4);
+		/* 背景色 */
+	}
+	/*模态框内容*/
+	
+	#dataCon_cs .modal-content {
+		border-radius: 5px;
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: column;
+		/*垂直排列*/
+		position: relative;
+		background-color: #fefefe;
+		margin: 7% auto;
+		/*距顶部15% 水平居中*/
+		padding: 20px;
+		border: 1px solid #888;
+		width: 768px;
+		/*自定义动画，从模态框内容上到下出现*/
+	}
+	
+	#dataCon_cs .modal-content_1 {
+		border-radius: 5px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		background-color: #fefefe;
+		margin: 0 auto;
+		margin-top: 6%;
+		margin-left: 16%;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 83%;
+		margin-right: 1%;
+	}
+	
+	@keyframes topDown {
+		from {
+			top: -300px;
+			opacity: 0
+		}
+		to {
+			top: 0;
+			opacity: 1
+		}
+	}
+	/*模态框头部*/
+	
+	#dataCon_cs .modal-header {
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: row;
+		/*水平布局*/
+		align-items: center;
+		/*内容垂直居中*/
+		justify-content: space-between;
+	}
+	/*关闭X 样式*/
+	
+	#dataCon_cs .close {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	#dataCon_cs .close:hover {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	#dataCon_cs .content_box .title {
+		display: inline-block;
+	}
+	
+	#dataCon_cs .content_box .content {
+		display: inline-block;
+		vertical-align: top;
+		width: 59%;
+		height: 100%;
+		padding-right: 50px;
+	}
+	
+	#dataCon_cs .verify {
+		position: relative;
+		left: 86px;
+		height: 28px;
+		line-height: 24px;
+		display: inline-block;
+		padding: 0px 13px;
+		border: 1px solid rgb(48, 137, 220);
+		background-color: rgb(48, 137, 220);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 6px;
+	}
+	
+	#dataCon_cs .content_box {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	
+	#dataCon_cs .content_box .title {
+		display: inline-block;
+		vertical-align: top;
+		width: 40%;
+		height: 100%;
+		text-align: right;
+		padding-right: 20px;
+		padding-left: 10px;
+		font-size: 14px;
+	}
+	
+	#dataCon_cs .content_box .content input {
+		width: 80%;
+		height: 30px;
+		border-bottom: 1px solid rgb(204, 204, 204);
+		font-size: 14px;
+		margin-top: 6px;
+	}
+	
+	#dataCon_cs .content_box .content select {
+		width: 80%;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px 10px;
+		border: 1px solid rgb(222, 228, 241);
+		background-color: rgb(244, 248, 250);
+		color: rgb(117, 117, 117);
+		font-size: 13px;
+		border-radius: 3px;
+		user-select: none;
+		cursor: pointer;
+		position: relative;
+		margin-top: 5px;
+		box-shadow: none;
+	}
+	
+	#dataCon_cs .content_box textarea {
+		padding: 8px;
+		margin-top: 13px;
+		font-size: 14px;
+		color: rgb(117, 117, 117);
+	}
+	
+	#dataCon_cs .content_box .remark {
+		width: 80%;
+		height: 100px;
+	}
+	
+	#dataCon_cs .model_title {
+		cursor: move;
+		height: 35px;
+		width: 100%;
+		font-size: 17px;
+		border-bottom: 1px solid rgb(229, 229, 229);
+		position: relative;
+		line-height: 15px;
+		text-align: center;
+		color: rgb(51, 51, 51);
+	}
+	
+	#myModal .modal-body {
+		margin: 15px 0;
+		overflow-y: auto;
+	}
+	
+	#dataCon_cs .bottom {
+		width: 100%;
+		height: 38px;
+		font-size: 18px;
+		box-sizing: border-box;
+		bottom: 0px;
+		border-top: 1px solid rgb(229, 229, 229);
+		left: 0%;
+		line-height: 54px;
+		text-align: center;
+	}
+	
+	#dataCon_cs .bottom_btn {
+		color: rgb(255, 255, 255);
+		background-color: rgb(48, 137, 220);
+		font-size: 13px;
+		padding: 4px 14px;
+		border-radius: 2px;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+	
+	#dataCon_cs .ly_tabTitle {
+		height: 40px;
+		background-color: rgb(255, 255, 255);
+		border-bottom: none;
+		box-shadow: rgb(204, 204, 204) 0px 0.5px 2px;
+		position: relative;
+		z-index: -1 !important;
+		padding-left: 80px;
+	}
+	/*.dtcWrap {
+		margin-top: 40px;
+	}*/
+	
+	#dataCon_cs .excel_upload {
+		height: 40px;
+		line-height: 32px;
+		font-size: 15px;
+		display: block;
+		width: 100%;
+		text-align: left;
+		margin-left: -4px;
+	}
+	
+	#dataCon_cs .gain {
+		position: absolute;
+		top: 28%;
+		margin-left: 100px;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	
+	.fileB {
+		background-color: initial;
+		border: 1px solid #ccc;
+		padding: 5px 10px;
+		border-radius: 4px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	
+	.exFile {
+		height: 35px;
+		padding: 0 10px;
+		display: inline-block;
+		line-height: 35px;
+		text-align: center;
+		cursor: pointer;
+		font-size: 14px;
+		box-sizing: border-box;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		vertical-align: middle;
+	}
+	
+	#renewalFeeModal .content_box .content .radioInput input {
+		-webkit-appearance: radio;
+		height: 14px;
+		width: 14px;
+		margin-right: 4px;
+		position: relative;
+		top: 2px;
+	}
+	
+	#renewalFeeModal .content_box .content .radioInput {
+		margin-right: 10px;
+	}
+	#model_body_v{
+		margin-top: 15px;
+	}
+</style>
+<div class="sh_home" id="dataCon_cs">
+	<!--新弹窗-->
+	<div id="myModaldaoru" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">卡导入</h2>
+					<span id="daoruClose" class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<form id="daoruForm" enctype="multipart/form-data">
+					<div class="content_box">
+						<div class="title">*供应商:</div>
+						<div class="content">
+							<select id="supplierUuid" name="supplierUuid">
+							</select>
+						</div>
+					</div>
+					<div class="content_box">
+						<div class="title">*业务类型:</div>
+						<div class="content">
+							<select id="businessType" name="businessType">
+								<option value="">请选择业务类型</option>
+								<option value="1">语音卡</option>
+								<option value="2">流量卡</option>
+							</select>
+						</div>
+					</div>
+					<div class="content_box">
+						<div class="title">*卡片类型:</div>
+						<div class="content">
+							<select id="cardType" name="cardType">
+								<option value="">请选择卡片类型</option>
+								<option value="1">MP0</option>
+								<option value="2">MP1</option>
+								<option value="3">MP2</option>
+								<option value="4">MS0</option>
+								<option value="5">MS1</option>
+								<option value="6">MS2</option>
+							</select>
+						</div>
+					</div>
+					<div class="content_box">
+						<div class="title">*卡片类型:</div>
+						<div class="content">
+							<select id="cardSize" name="cardSize">
+								<option value="">请选择卡片尺寸</option>
+								<option value="1">标准大卡</option>
+								<option value="2">二切卡</option>
+								<option value="3">三切卡</option>
+								<option value="4">5.0*6.0mm</option>
+							</select>
+						</div>
+					</div>
+					<div class="content_box" id="hbFile">
+						<div class="title" for="file">选择文件:</div>
+						<div class="content">
+							<label class="fileB" for="file" id="huaboChoose" style="position: relative;">
+							<input id="daoruFile" name="uploadExcelFile" type="file" style="position: absolute;width: 100%;left:0;top: 0;bottom: 0;opacity: 0;">
+							<span id="daoruText">选择</span> 	
+						</label>
+							<a href="/html/template/importIccidExcel.xlsx" style="text-decoration: underline; font-size: 14px;" id="xufeiUpload">下载模板</a>
+						</div>
+					</div>
+					<div class="content_box">
+						<div class="title">备注:</div>
+						<div class="content">
+							<textarea id="huaboRemark" name="remark" class="remark" wrap="virtual"></textarea>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="daoruSave">确定</span>
+				<span class="bottom_btn" id="daoruCancel">取消</span>
+			</div>
+		</div>
+	</div>
+	<!-- 划拨模态框 -->
+	<div id="slidermyModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">批量划拨</h2>
+					<span id="slidercloseBtn" class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body" id="model_body_v">
+
+				<div class="content_box">
+					<div class="title">数量:</div>
+					<div class="content">
+						<span id="number" style="color:red;">0</span>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*客户:</div>
+					<div class="content">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*激活类型:</div>
+					<div class="content">
+						<select id="activationType1" type="text" name="activationType">
+							<option value="">请选择激活类型</option>
+							<option value="1">手动激活</option>
+							<option value="2">自动激活</option>
+						</select>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">是否进行imei池绑定</div>
+					<div class="content">
+						<select id="_imeiBind" type="text" name="imeiBind">
+							<option value="">请选择是否进行imei池绑定</option>
+							<option value="1">是</option>
+							<option value="2">否</option>
+						</select>
+					</div>
+				</div>
+				<form id="form" enctype="multipart/form-data">
+					<div class="content_box" id='fileWrap3'>
+						<div class="title" for="file">选择文件:</div>
+						<div class="content">
+							<label class="fileB" for="file" id="choose">选择</label>
+							<input type="file" name="uploadExcelFile" id="file" style="display: none;" />
+							<a style="text-decoration: underline;cursor:pointer" href="/html/template/importIccidExcel.xlsx">下载模板</a>
+						</div>
+					</div>
+				</form>
+				<div class="content_box" style="height:auto">
+					<div class="title">备注:</div>
+					<div class="content">
+						<textarea cols="38" rows="6" id="remark" name="remark">
+						</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save">保存</span>
+				<span class="bottom_btn" id="slidercancelBtn">取消</span>
+			</div>
+		</div>
+
+	</div>
+	<!-- 回划模态框 -->
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">批量回划</h2>
+					<span id="closeBtn" class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body" id="model_body_v">
+
+				<div class="content_box">
+					<div class="title">数量:</div>
+					<div class="content">
+						<span id="number2" style="color:red;">0</span>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*客户:</div>
+					<div class="content">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*激活类型:</div>
+					<div class="content">
+						<select id="activationType1" type="text" name="activationType">
+							<option value="">请选择激活类型</option>
+							<option value="1">手动激活</option>
+							<option value="2">自动激活</option>
+						</select>
+					</div>
+				</div>
+				<form id="form" enctype="multipart/form-data">
+					<div class="content_box" id='fileWrap2'>
+						<div class="title" for="file">选择文件:</div>
+						<div class="content">
+							<label class="fileB" for="file" id="choose2">选择</label>
+							<input type="file" name="uploadExcelFile" id="file" style="display: none;" />
+							<a style="text-decoration: underline;cursor:pointer" href="/html/template/importIccidExcel.xlsx">下载模板</a>
+						</div>
+					</div>
+				</form>
+				<div class="content_box" style="height:auto">
+					<div class="title">备注:</div>
+					<div class="content">
+						<textarea cols="38" rows="6" id="remark" name="remark">
+						</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save2">保存</span>
+				<span class="bottom_btn" id="cancelBtn">取消</span>
+			</div>
+		</div>
+
+	</div>
+	<!-- 主套餐变更模态框 -->
+	<div id="mainBagModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">主套餐变更</h2>
+					<span id="mainBagcloseBtn" class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body" id="model_body_v">
+				<div class="content_box">
+					<div class="title">数量:</div>
+					<div class="content">
+						<span id="number12" style="color:red;">0</span>
+					</div>
+				</div>
+				<form id="form1" enctype="multipart/form-data">
+					<div class="content_box" id='fileWrap12'>
+						<div class="title" for="file">选择文件:</div>
+						<div class="content">
+							<label class="fileB" for="file1" id="choose12">选择</label>
+							<input type="file" name="uploadExcelFile" id="file12" style="display: none;" />
+							<a style="text-decoration: underline;cursor:pointer" href="/html/template/importIccidExcel.xlsx">下载模板</a>
+						</div>
+					</div>
+				</form>
+				<div class="content_box">
+					<div class="title">业务类型:</div>
+					<div class="content">
+						<label>流量</label>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">套餐类型:</div>
+					<div class="content">
+						<label>主套餐</label>
+					</div>
+				</div>
+				<div class="content_box" id="flowType">
+					<div class="title">包体类型:</div>
+					<div class="content">
+						<label>月包</label>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*套餐:</div>
+					<div class="content">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*数量:</div>
+					<div class="content">
+						<select id="selectNum2" type="text" name="selectNum">
+						</select>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">总金额:</div>
+					<div class="content">
+						<span id="sum2" style="color:red;">0</span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save12">保存</span>
+				<span class="bottom_btn" id="mainBagcancelBtn">取消</span>
+			</div>
+		</div>
+
+	</div>
+	<!-- 订购套餐 -->
+	<div id="renewalFeeModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">订购套餐</h2>
+					<span id="renewalcloseBtn" class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body" id="model_body_v">
+				<div class="content_box">
+					<div class="title">数量:</div>
+					<div class="content">
+						<span id="number1" style="color:red;">0</span>
+					</div>
+				</div>
+				<form id="form1" enctype="multipart/form-data">
+					<div class="content_box" id='fileWrap1'>
+						<div class="title" for="file">选择文件:</div>
+						<div class="content">
+							<label class="fileB" for="file1" id="choose1">选择</label>
+							<input type="file" name="uploadExcelFile" id="file1" style="display: none;" />
+							<a style="text-decoration: underline;cursor:pointer" href="/html/template/importIccidExcel.xlsx">下载模板</a>
+						</div>
+					</div>
+				</form>
+				<div class="content_box">
+					<div class="title">业务类型:</div>
+					<div class="content">
+						<label class="radioInput"><input checked onchange="change('businessType',this)" type="radio" name="businessType" value="1" />流量</label>
+						<label class="radioInput"><input onchange="change('businessType',this)" type="radio" name="businessType" value="2" />语音</label>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">套餐类型:</div>
+					<div class="content">
+						<label class="radioInput"><input checked onchange="change('bagSuppliersType',this)" type="radio" name="bagSuppliersType" value="1" />主套餐</label>
+						<label class="radioInput"><input onchange="change('bagSuppliersType',this)" type="radio" name="bagSuppliersType" value="2" />叠加包</label>
+					</div>
+				</div>
+				<div class="content_box" id="flowType">
+					<div class="title">包体类型:</div>
+					<div class="content">
+						<label class="radioInput"><input checked onchange="change('flowType',this)"  type="radio" name="flowType" value="0" />月包</label>
+						<label class="radioInput"><input onchange="change('flowType',this)"  type="radio" name="flowType" value="1" />季包</label>
+						<label class="radioInput"><input onchange="change('flowType',this)"  type="radio" name="flowType" value="2" />半年包</label>
+						<label class="radioInput"><input onchange="change('flowType',this)"  type="radio" name="flowType" value="3" />年包</label>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*套餐:</div>
+					<div class="content">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*数量:</div>
+					<div class="content">
+						<select id="selectNum" type="text" name="selectNum">
+						</select>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">总金额:</div>
+					<div class="content">
+						<input type="text" id="sum" readonly="readonly" />
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*生效方式:</div>
+					<div class="content">
+						<label class="radioInput"><input checked onchange="change('activeType',this)"  type="radio" name="activeType" value="1" />当月生效</label>
+						<label class="radioInput"><input onchange="change('activeType',this)"  type="radio" name="activeType" value="2" />次月生效</label>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save1">保存</span>
+				<span class="bottom_btn" id="renewalcancelBtn">取消</span>
+			</div>
+		</div>
+
+	</div>
+</div>

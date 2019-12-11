@@ -1,0 +1,728 @@
+<style>
+	.detailsSet table {
+		border-collapse: collapse;
+	}
+	
+	.detailsSet table tr {
+		text-align: center;
+	}
+	.detailsSet table tr td {
+		padding:5px; 
+	}
+	.share .viewC_con {
+		height: 400px !important;
+		overflow: auto !important;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 10px 0px;
+		clear: both;
+		transition: all 0.3s ease 0s;
+	}
+	
+	.share .recording {
+		position: absolute;
+		top: 28%;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	/*模态框*/
+	
+	.share .modal {
+		display: none;
+		/* 默认隐藏 */
+		position: fixed;
+		/* 根据浏览器定位 */
+		z-index: 999;
+		/* 放在顶部 */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* 全宽 */
+		height: 100%;
+		/* 全高 */
+		overflow: auto;
+		/* 允许滚动 */
+		background-color: rgba(0, 0, 0, 0.4);
+		/* 背景色 */
+	}
+	/*模态框内容*/
+	
+	.share .modal-content {
+		border-radius: 5px;
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: column;
+		/*垂直排列*/
+		position: relative;
+		background-color: #fefefe;
+		margin: 7% auto;
+		/*距顶部15% 水平居中*/
+		padding: 20px;
+		border: 1px solid #888;
+		width: 768px;
+		/*自定义动画，从模态框内容上到下出现*/
+	}
+	
+	.share .modal-content_1 {
+		border-radius: 5px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		background-color: #fefefe;
+		margin: 0 auto;
+		margin-top: 6%;
+		margin-left: 16%;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 83%;
+		margin-right: 1%;
+	}
+	
+	@keyframes topDown {
+		from {
+			top: -300px;
+			opacity: 0
+		}
+		to {
+			top: 0;
+			opacity: 1
+		}
+	}
+	/*模态框头部*/
+	
+	.share .modal-header {
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: row;
+		/*水平布局*/
+		align-items: center;
+		/*内容垂直居中*/
+		justify-content: space-between;
+	}
+	/*关闭X 样式*/
+	
+	.share .close {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	.share .close:hover {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.share .content_box .title {
+		display: inline-block;
+	}
+	
+	.share .content_box .content {
+		display: inline-block;
+		vertical-align: top;
+		width: 59%;
+		min-height: 30px;
+		padding-right: 50px;
+		/*overflow: hidden;*/
+	}
+	
+	.share .verify {
+		position: relative;
+		left: 86px;
+		height: 28px;
+		line-height: 24px;
+		display: inline-block;
+		padding: 0px 13px;
+		border: 1px solid rgb(48, 137, 220);
+		background-color: rgb(48, 137, 220);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 6px;
+	}
+	
+	.share .content_box {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	
+	.share .content_box .title {
+		display: inline-block;
+		vertical-align: top;
+		width: 40%;
+		/*height: 100%;*/
+		text-align: right;
+		padding-right: 20px;
+		padding-left: 10px;
+		font-size: 14px;
+	}
+	
+	.share .content_box .content>input {
+		width: 100%;
+		height: 30px;
+		border-bottom: 1px solid rgb(204, 204, 204);
+		font-size: 14px;
+		margin-top: 6px;
+	}
+	
+	.share .content_box .content select {
+		width: 80%;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px 10px;
+		border: 1px solid rgb(222, 228, 241);
+		background-color: rgb(244, 248, 250);
+		color: rgb(117, 117, 117);
+		font-size: 13px;
+		border-radius: 3px;
+		user-select: none;
+		cursor: pointer;
+		position: relative;
+		box-shadow: none;
+	}
+	.share .content_box .content input{
+		width: 80%;
+	    height: 30px;
+	    line-height: 30px;
+	    padding: 0px 10px;
+	    border: 1px solid rgb(222, 228, 241);
+	    background-color: rgb(244, 248, 250);
+	    color: rgb(117, 117, 117);
+	    font-size: 13px;
+	    border-radius: 3px;
+	    user-select: none;
+	    cursor: pointer;
+	    position: relative;
+	    box-shadow: none;
+	}
+	.share .content_box textarea:focus{
+		outline: none;
+		border:1px solid rgb(169, 169, 169);
+	}
+	.share .content_box textarea {
+		padding: 8px;
+		font-size: 14px;
+		color: rgb(117, 117, 117);
+	}
+	
+	.share .model_title {
+		cursor: move;
+		height: 35px;
+		width: 100%;
+		font-size: 17px;
+		border-bottom: 1px solid rgb(229, 229, 229);
+		position: relative;
+		line-height: 15px;
+		text-align: center;
+		color: rgb(51, 51, 51);
+	}
+	
+	.share #myModal .modal-body {
+		margin: 15px 0;
+		overflow-y: auto;
+	}
+	
+	.share .bottom {
+		width: 100%;
+		height: 38px;
+		font-size: 18px;
+		box-sizing: border-box;
+		bottom: 0px;
+		border-top: 1px solid rgb(229, 229, 229);
+		left: 0%;
+		line-height: 54px;
+		text-align: center;
+	}
+	
+	.share .bottom_btn {
+		color: rgb(255, 255, 255);
+		background-color: rgb(48, 137, 220);
+		font-size: 13px;
+		padding: 4px 14px;
+		border-radius: 2px;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+	
+	.share .ly_tabTitle {
+		height: 40px;
+		background-color: rgb(255, 255, 255);
+		border-bottom: none;
+		box-shadow: rgb(204, 204, 204) 0px 0.5px 2px;
+		position: relative;
+		z-index: -1 !important;
+		padding-left: 80px;
+	}
+	
+	.share .excel_upload {
+		height: 40px;
+		line-height: 32px;
+		font-size: 15px;
+		display: block;
+		width: 100%;
+		text-align: left;
+		margin-left: -4px;
+	}
+	
+	.share .gain {
+		position: absolute;
+		top: 28%;
+		margin-left: 100px;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	
+	.remark {
+		width: 80%;
+		height: 100px;
+	}
+	
+	.fileB {
+		border: 1px solid #797979;
+		padding: 5px 20px;
+		font-size: 14px;
+		border-radius: 5px;
+		margin-right: 20px;
+		display: inline-block;
+	}
+	
+	.modal-body {
+		padding-top: 10px;
+	}
+	
+	.share .content_box .content .modal_redios_checkd {
+		float: left;
+		margin-right: 20px;
+		font-size: 14px;
+		line-height: 14px;
+	}
+	
+	.share .content_box .content .modal_redios_checkd input {
+		-webkit-appearance: radio;
+		height: 14px;
+		width: 14px;
+		margin-right: 2px;
+	}
+	/*详情弹窗*/
+	
+	.model-input span {
+		display: inline-block;
+		flex: 1;
+		height: 30px;
+		line-height: 20px;
+		margin: 5px 20px;
+		border: 1px solid #ccc;
+		padding: 3px 20px;
+	}
+	
+	.model-cursor input {
+		cursor: pointer;
+	}
+	
+	.model-input span input {
+		width: 100%;
+		height: 100%;
+		border: none;
+	}
+	
+	.model-input span select {
+		width: 100%;
+		height: 100%;
+		color: rgb(117, 117, 117);
+		font-size: 13px;
+		user-select: none;
+		cursor: pointer;
+		position: relative;
+		border: none;
+		outline: none;
+		font-weight: 600;
+		appearance: menulist;
+		-moz-appearance: menulist;
+		-webkit-appearance: menulist;
+	}
+	
+	#dataCon .myModaldetails .modal-content {
+		width: 1000px;
+	}
+	/*详情弹窗*/
+	
+	#dataCon .myModaldetails .modal-content {
+		width: 1000px;
+	}
+	
+	.myModaldetails .modal-body .detailsTab {
+		overflow: hidden;
+	}
+	
+	.myModaldetails .modal-body .detailsTab p {
+		float: left;
+		padding: 5px 10px;
+		font-size: 14px;
+		border: 1px solid #cccccc;
+		margin: 5px 3px;
+		cursor: pointer;
+		font-size: 14px;
+	}
+	
+	.myModaldetails .modal-body .detailsTab p:nth-child(1) {
+		margin-left: 0;
+	}
+	
+	.myModaldetails .detailsCard {
+		width: 100%;
+		display: flex;
+	}
+	
+	.myModaldetails .detailsCard>div {
+		flex: 1;
+	}
+	
+	.myModaldetails .detailsCard>div ul {
+		width: 100%;
+	}
+	
+	.myModaldetails .detailsCard>div ul li {
+		width: 100%;
+		display: flex;
+		border-top: 1px solid #000;
+		border-left: 1px solid #000;
+		border-right: 1px solid #000;
+		height: 30px;
+		line-height: 30px;
+	}
+	
+	.myModaldetails .detailsCard>div ul li:last-child {
+		border-bottom: 1px solid #000;
+	}
+	
+	.myModaldetails .detailsCard>div ul li .cardTitle {
+		flex: 1.5;
+		text-align: center;
+		border-right: 1px solid #000;
+	}
+	
+	.myModaldetails .detailsCard>div ul li .cardlist {
+		flex: 3;
+		text-align: center;
+	}
+	
+	.detailsCard_left {
+		margin-right: 5px;
+	}
+	
+	.detailsCard_right {
+		margin-left: 5px;
+	}
+	
+	.myModalsearch .model-input {
+		display: flex;
+	}
+	
+	.detailsTab .active {
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(30, 159, 255);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	
+	/*tap切换按钮*/
+	.share_title{
+		width: 100%;
+		overflow: hidden;
+		padding:5px 0;
+		overflow: hidden;
+	}
+	
+	.share_title h2{
+		font-size: 18px;
+	    font-weight: 600;
+	    float: left;
+	    margin-left: 5px;
+	}
+	
+	.tap .back{
+		float: right;
+	    padding: 5px 20px;
+	    font-size: 14px;
+	    background: #798AA8;
+	    color: #fff;
+	    margin-right: 5px;
+	    border-radius: 3px;
+	    cursor: pointer;
+	}
+	.tap{
+		width: 100%;
+		overflow: hidden;
+		padding:5px 0;
+	}
+	.tap p{
+		float: left;
+		padding: 5px 20px;
+		border:1px solid #BCD0E0;
+		border-radius: 3px;
+		margin-left: 5px;
+		cursor: pointer;
+		font-size: 14px;
+	}
+	.tap p.active{
+		background:#169BD5;
+		color:#fff;
+	}
+	#shareOperatorList #parentPoolName{
+		font-size: 17px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 6px;
+	}
+	.sh_home.share{
+		height:initial !important;
+	}
+</style>
+
+
+<div class="sh_home share" id="shareOperatorList">
+	<div class="share_title">
+		<h1 id="parentPoolName"></h1>
+	</div>
+	<div class="tap">
+		<p class="mobile active">卡片列表</p>
+		<span class="back">返回</span>
+	</div>
+	
+		<!--卡片入池-->
+	<div id="cardJoin" class="modal self_modal"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">卡片入池</h2>
+					<span class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="content_box">
+					<div class="title">运营商共享池名称:</div>
+					<div class="content">
+						<span id="poolName"></span>
+					</div>
+				</div>
+				<div id="iccidWrap">
+					<div class="content_box">
+						<div class="title">ICCID开始段:</div>
+						<div class="content">
+							<input id="iccidBegin" type="text" />
+						</div>
+					</div>
+					
+					<div class="content_box">
+						<div class="title">ICCID结束段:</div>
+						<div class="content">
+							<input id="iccidEnd" type="text" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="content_box" id="xfFile">
+					<div class="title" for="file">选择文件:</div>
+					<div class="content">
+						<form id="fpForm" enctype="multipart/form-data" style="display: inline-block;">
+							<label class="fileB" for="file" id="xufeiChoose" style="position: relative;">
+								<input id="xufeiFile" name="uploadExcelFile" type="file" style="position: absolute;left:0;top: 0;width: 100%;bottom: 0;opacity: 0;">
+								<span id="xufeiText">选择</span> 	
+							</label>
+						</form>
+						<a href="/html/template/importIccidExcel.xlsx" style="text-decoration: underline; font-size: 14px;" id="xufeiUpload">下载模板</a>
+					</div>
+				</div>
+				
+				<div class="content_box" style="height:95px">
+					<div class="title">*SIM卡:</div>
+					<div class="content">
+						<textarea readonly="readonly" id="sim" class="remark" wrap="virtual" style="height: 100px;width:80%;margin-bottom: 10px;"></textarea>
+					</div>
+				</div>
+				
+				<div class="content_box" style="margin-bottom: 0;margin-top: 20px;"> 
+					<div class="title" style="opacity: 0;">卡片数量:</div>
+					<div class="content">
+						<span>卡片数量 :</span><span id="num"></span>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save">确定</span>
+				<span class="bottom_btn cancel">取消</span>
+			</div>
+		</div>
+	</div>
+	
+		<!--卡片分配-->
+	<div id="cardAllocation" class="modal self_modal"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">卡片分配</h2>
+					<span class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="content_box">
+					<div class="title">*客户名称:</div>
+					<div class="content" id="customerName">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*共享池名称:</div>
+					<div class="content" id="poolName">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				
+				<div id="iccidWrap">
+					<div class="content_box">
+						<div class="title">ICCID开始段:</div>
+						<div class="content">
+							<input id="iccidBegin" type="text" />
+						</div>
+					</div>
+					
+					<div class="content_box">
+						<div class="title">ICCID结束段:</div>
+						<div class="content">
+							<input id="iccidEnd" type="text" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="content_box" id="xfFile">
+					<div class="title" for="file">选择文件:</div>
+					<div class="content">
+						<form id="kpfpForm" enctype="multipart/form-data" style="display: inline-block;">
+							<label class="fileB" for="file" id="xufeiChoose" style="position: relative;">
+								
+								<input id="fenpeiFile" name="uploadExcelFile" type="file" style="position: absolute;left:0;top: 0;width: 100%;bottom: 0;opacity: 0;">
+								<span id="fenpeiText">选择</span>
+							</label>
+						</form>
+						<a href="/html/template/importIccidExcel.xlsx" style="text-decoration: underline; font-size: 14px;" id="xufeiUpload">下载模板</a>
+					</div>
+				</div>
+				
+				<div class="content_box" style="height:95px">
+					<div class="title">*SIM卡:</div>
+					<div class="content">
+						<textarea readonly="readonly" id="sim" class="remark" wrap="virtual" style="height: 100px;width:80%;margin-bottom: 10px;"></textarea>
+					</div>
+				</div>
+				
+				<div class="content_box" style="margin-bottom: 0;margin-top: 20px;"> 
+					<div class="title" style="opacity: 0;">卡片数量:</div>
+					<div class="content">
+						<span>卡片数量 :</span><span id="num"></span>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save">确定</span>
+				<span class="bottom_btn cancel">取消</span>
+			</div>
+		</div>
+	</div>
+	
+	<!--卡片限制-->
+	<div id="cardLimit" class="modal self_modal"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">卡片限制</h2>
+					<span class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="content_box" style="height:100px">
+					<div class="title">*SIM卡:</div>
+					<div class="content">
+						<textarea readonly="readonly" id="sim" class="remark" wrap="virtual" style="width:80%;height: 100px;margin-bottom: 10px;"></textarea>
+					</div>
+				</div>
+				
+				<div class="content_box">
+					<div class="title" style="opacity: 0;">卡片数量:</div>
+					<div class="content">
+						<span>卡片数量: </span><span id="num"></span>
+					</div>
+				</div>
+				
+				<div class="content_box" id="xfFile">
+					<div class="title" for="file">选择文件:</div>
+					<div class="content">
+						<form id="xzForm" enctype="multipart/form-data" style="display: inline-block;">
+							<label class="fileB" for="file" id="xufeiChoose" style="position: relative;">
+								<input id="xufeiFile" name="uploadExcelFile" type="file" style="position: absolute;left:0;top: 0;width: 100%;bottom: 0;opacity: 0;">
+								<span id="xufeiText">选择</span> 	
+							</label>
+						</form>
+						<a href="/html/template/importIccidExcel.xlsx" style="text-decoration: underline; font-size: 14px;" id="xufeiUpload">下载模板</a>
+					</div>
+				</div>
+				
+				<div class="content_box">
+					<div class="title">*限制用量:</div>
+					<div class="content">
+						<input type="text" id="singleFlowMax" placeholder="请输入限制用量" />
+					</div>
+				</div>
+				
+				<div class="content_box">
+					<div class="title">*超量策略:</div>
+					<div class="content">
+						<select id="limitType" name="limitType">
+							<option value="">请选择超量策略</option>
+							<option value="0">无限量</option>
+							<option value="1">降速</option>
+							<option value="2">停卡</option>
+							<option value="3">计费使用</option>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save">确定</span>
+				<span class="bottom_btn cancel">取消</span>
+			</div>
+		</div>
+	</div>
+
+</div>

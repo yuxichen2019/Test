@@ -15,8 +15,8 @@ def send_mail(report):
     yag.send('707148142@qq.com',subject,contents,report)
     print('email has send out')
 
-test_dir = './test_case2'
-#test_dir = './test_baidu'
+#test_dir = './test_case2'
+test_dir = './test_baidu'
 # defaultTestLoader()类，通过该类下面的discover()方法可自动根据测试目录start_dir匹配查找测试用例文件（test*.py），并将查找到的测试用例组装到测试套件，因此可以直接通过run()方法执行
 suit = unittest.defaultTestLoader.discover(test_dir,pattern='test*.py')
 

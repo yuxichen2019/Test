@@ -1,0 +1,27 @@
+物联网版本更新日志：
+	2018/11/07 :新增|编辑弹窗样式修改(上下固定)   
+	                                 调整下拉框高亮时阴影缺失问题
+	                                 
+//展开下拉框之前先关闭其他下拉框     dataTable.js  210行
+	for(var i=0; i< document.querySelectorAll(".selectItems").length;i++){
+		document.querySelectorAll(".selectItems")[i].style.display = 'none';
+		document.querySelectorAll(".dateSvg")[i].style.transform = 'rotate(0deg)'; 
+	};
+	
+	2018/11/09 : 新增|编辑弹窗，配置值加入isShow，控制是否显示？
+	                                    加入弹窗下拉框请求数据的存储 
+	                                    
+	2018/11/12 : 编辑弹窗补充了area文本域的类型
+	                                    编辑弹窗txt类型，加入不可编辑的控制
+	                                    
+	2018/11/26 : 加入ssView组件
+	
+	2018/11/28 : 操作项加入固定位置功能
+	
+	2018/12/03 : 编辑弹窗加入左右布局的控制  / 操作按钮控制显示隐藏，加入||条件
+	             dtView组件编辑加入图片展示的功能
+	
+	
+	
+	
+	

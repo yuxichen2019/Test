@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>物联网卡管理平台</title>
+		<link rel="icon" href="./assets/images/ss.ico" />
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<link rel="stylesheet" href="./assets/css/style.min.css" />
+	</head>
+
+	<body>
+		<script src="incoming/1.0.0_gx_wlw/incoming/menuData_cur.js"></script>
+		<script src="incoming/1.0.0_gx_wlw/incoming/menuData_client.js"></script>
+		<script src="incoming/1.0.0_gx_wlw/incoming/commonData.js"></script>
+		<script src="incoming/1.0.0_gx_wlw/ssui.js"></script>
+		<script>
+//			var ssuiMdSrc = 'http://120.24.50.202:2143/dev/1.0.0_gx_wlw';
+			var ssuiMdSrc = 'incoming/1.0.0_gx_wlw';
+			//-| 配置 |
+			ss.config({
+				commonUrl: '',
+				//其它模块路径
+				path: {
+					$: ssuiMdSrc + '/incoming/jquery-3.3.1.min.js',
+					layer: ssuiMdSrc + '/incoming/layerAll/layer.min.js',
+					laydate: ssuiMdSrc+'/incoming/laydate/laydate.js',
+					userMenu: 'assets/js/userMenu.js',
+					tree: ssuiMdSrc+'/incoming/jstree.min.js',
+					tlf_mulSel:ssuiMdSrc+'/incoming/tlf_mulSel.js',
+					form: ssuiMdSrc + '/incoming/jquery.form.min.js',
+					JsonExportExcel: ssuiMdSrc + '/incoming/JsonExportExcel.min.js',
+					formPopup: 'assets/incoming/formPopup.js',
+					commomData: 'assets/incoming/commomData.js',
+				},
+				//非标准模块的别名
+				shim: {
+					$: {
+						exports: '$'
+					},
+					form: {
+						exports: 'form'
+					},
+					JsonExportExcel: {
+						exports: 'JsonExportExcel'
+					},
+					tree: {
+						exports: 'tree'
+					},
+					layer: {
+						exports: 'layer'
+					},
+					laydate: {
+						exports: 'laydate'
+					},
+					tlf_mulSel: {
+						exports: 'tlf_mulSel'
+					},
+					formPopup: {
+						exports: 'formPopup'
+					},
+					commomData: {
+						exports: 'commomData'
+					}
+				},
+				//菜单数据
+				menuData: menuData_cur,
+				//js本地地址
+				jsUrl: './assets/js/'
+			});
+			//-| 加载模板 |-=> ['layout(布局)','menu(导航菜单)','router(路由)','laydate(日期)']
+			ss.imports(
+				[
+					'layout', 'menu', 'router', '$', 'form', 'JsonExportExcel', 'layer', 'c3Loading', 'ajax', 'commonTool', 'laydate',
+					'userMenu', 'tree', 'tlf_mulSel', 'ssView', 'ssRadio', 'formPopup', 'blurrySel','ssSelect'
+				],
+				function() {
+
+					//处理菜单，进行分类
+					function getMenuCodesFn(sourceData) {
+						var menuData = ss.options.menuData.heeler;
+						
+						//哈希表
+						var hashObj = {};
+						//数据整合
+						var dpDataObj = {};
+						var _eddArr = [];
+						menuData.forEach(function(item) {
+							hashObj[item.mn_code] = item.leader;
+						});
+						//对请求数据分类
+						sourceData.forEach(function(item) {
+							(!dpDataObj[item.labal] && item.selected != 1) && (dpDataObj[item.labal] = []);
+							dpDataObj[item.labal] && (item.selected != 1) && dpDataObj[item.labal].push(item);
+						});
+						return dpDataObj;
+					};
+					//获取该用户的信息
+					ss.ajax({
+						url: '/admin/common/getCurrentUserInfo.action',
+						data: {}
+					}, {
+						success: function(userData) {
+							//如果为超级用户->直接全部权限
+							if(userData.data.loginCode == 'ROOT') {
+								renderFn(userData);
+								return;
+							}
+							//其它角色：通过用户id去获取角色
+							ss.ajax({
+								url: '/admin/common/getUserRoleMaps.action',
+								data: {
+									userUuid: userData.data.uuid
+								}
+							}, {
+								success: function(roleData) {
+									//通过角色去获取权限
+									ss.ajax({
+										url: '/admin/common/getPermissionMenuList.action',
+										data: {
+											roleUuid: roleData.data[0].roleUuid
+										}
+									}, {
+										success: function(permissionData) {
+//											全局用户权限
+											ss.jurisdiction = permissionData.data
+											//当前用户的权限数据
+											var curUserRoleData = getMenuCodesFn(permissionData.data);
+											//总的菜单数据
+											var menuData = ss.options.menuData.heeler;
+											//最后加载数据
+											var loadData = [];
+											menuData.forEach(function(item) {
+												if(curUserRoleData[item.mn_code]) {
+													var _item = item;
+													var _heeler = _item.heeler;
+													var _eddArr = [];
+													//建立哈希表
+													var _hxObj = {};
+													curUserRoleData[item.mn_code].forEach(function(item) {
+														_hxObj[item.sourceCode] = true;
+													})
+													if(_heeler && _heeler.length > 0) {
+														_heeler.forEach(function(item) {
+															_hxObj[item.sourceCode] && _eddArr.push(item);
+														})
+													};
+													_item.heeler = _eddArr;
+													loadData.push(_item)
+												}
+											})
+											ss.options.menuData.heeler = loadData;
+											
+											
+											renderFn(userData);
+										},
+										isJson: true
+									});
+
+								},
+								isJson: true
+							});
+
+						},
+						isJson: true
+					});
+					//渲染
+					function renderFn(userData) {
+						//布局
+						ss.layout({
+							userData: userData['data'],
+							//roleData: roleData,
+							//样式控制ctlCss:{th:'50',//顶部高度,lw:'230',//左侧宽度openItemH:'40',//打开项高度}
+						});
+						//菜单
+						ss.menu({
+							name: '物联网卡管理平台', //系统名字
+							defaultHash: 'orderList', //默认跳转hash值，(为空|不填)时为主页
+							//sourceData: [], //资源数据
+							//isJurisdiction: code == 'ROOT' ? false : true, //是否开启权限控制
+						});
+						//路由
+						ss.router({
+							defaultHash: '', //默认跳转hash值，(为空|不填)时为主页
+							viewUrl: './assets/view/'
+						});
+						
+						console.log($(".mn_flexBox"))
+						$(".mn_flexBox").click(function(){
+							$(this).toggleClass("active")
+							if($(this).hasClass("active")){
+								$(".ly_munuName").css("display","none");
+								$(".ly_menu").css({"width":"50px"});
+								$(".ly_Containter").css({"padding-left":"50px"})
+							}else{
+								$(".ly_munuName").css("display","block");
+								$(".ly_menu").css({"width":"230px"});
+								$(".ly_Containter").css({"padding-left":"230px"})
+							}
+						})
+					}
+					
+					
+
+				})
+		
+			
+		
+		</script>
+
+	</body>
+
+</html>

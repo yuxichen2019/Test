@@ -1,0 +1,1079 @@
+<style>
+    .treeMenu {
+        width: 18%;
+        float: left;
+        border-right: 1px solid #000;
+        position: absolute;
+        background: #fff;
+        height:100%;
+        left: 0 ;
+        top:0;
+    }
+	/*.container{
+		background:#d7d7d7;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}*/
+    .sh_home .content {
+        width: 100%;
+        float: left;
+        text-align: center;
+        padding-left:18%;
+        background:#fff;
+    }
+
+    .model table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: auto;
+    }
+
+    .model table,
+    .model th,
+    .model td {
+        border: 1px solid #d7d7d7;
+        text-align: center;
+    }
+
+    .model th {
+        background: #C9C9C9;
+    }
+	
+	.model h1{
+		font-size: 35px;
+		font-weight: 600;
+	}
+    .model h3 {
+        text-align: left;
+        font-size: 26px;
+        width: 80%;
+        margin: auto;
+        padding: 30px 0 20px 0;
+    }
+
+    .model p {
+        text-align: left;
+        width: 80%;
+        margin: auto;
+        padding: 5px;
+        font-size: 18px;
+    }
+
+    .model {
+        padding-bottom: 100px;
+    }
+    .nav_top{
+    	height: 45px;
+    	width: 100%;
+    }
+    .api{
+    	overflow: hidden;
+    	width: 80%;
+    	margin: auto;
+    	
+    }
+    .api .api_cont{
+    	float: right;
+    	margin-right: 20px;
+    }
+    .api .api_cont a{
+    	font-size: 16px;
+    	color:#337AB7;
+    }
+    .api .api_cont span{
+    	font-size: 14px;
+    	display: none;
+    }
+    .api_nav{
+    	float: left;
+    }
+    .api_nav span{
+    	font-size: 26px;
+    	font-weight: 600;
+    }
+    .nav{
+    	border-bottom: 1px solid #d7d7d7;
+    	height: 45px;
+    	line-height: 40px;
+    	position: absolute;
+    	width: calc(80% - 6px);
+    	top:0;
+    	background: #fff;
+    }
+</style>
+<div class="sh_home" id="dataCon_cus" style="position: relative;">
+	<div style="height: 100%; overflow-x: auto;border-right: 1px solid #ccc; " id="ly_aside11">
+        <div id="treeMenu" class="treeMenu"></div>
+        <div class="content">
+        	<div class="nav_top"></div>
+        	<div class="nav"> 
+	        	<div class="api">
+	        		<div class="api_nav">
+	        			<span>接口描述</span>
+	        		</div>
+	        		<div class="api_cont">
+	        			<a href="javascript:;">查看secret</a>
+	        			<span></span>
+	        		</div>
+	        	</div>
+        	</div>
+            <!-- 公共参数 -->
+            <div class="model" id="commonality">
+                <h1>公共参数</h1>
+
+
+                <h3 id="commonality1">请求地址</h3>
+                <p>http://iot.sy666.com/m2m/amap/entry/index/m2m/api/v1</p>
+                <h3 id="commonality2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>接口名称</td>
+                            <td>method</td>
+                            <td>String(32)</td>
+                            <td>是</td>
+                            <td>sohan.trade.create</td>
+                            <td>接口名称</td>
+                        </tr>
+
+                        <tr>
+                            <td>用户名</td>
+                            <td>username</td>
+                            <td>String(32)</td>
+                            <td>是</td>
+                            <td>test</td>
+                            <td>账号名称</td>
+                        </tr>
+                        <tr>
+                            <td>时间戳</td>
+                            <td>timestamp</td>
+                            <td>String(16)</td>
+                            <td>是</td>
+                            <td>1461379193134</td>
+                            <td>13位时间戳</td>
+                        </tr>
+                        <tr>
+                            <td>签名</td>
+                            <td>sign</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>s9A0A8659F005D6984697E</td>
+                            <td>参考附录二</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+                <h3 id="commonality3">响应参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>返回状态码</td>
+                            <td>returnCode</td>
+                            <td>Str3ing(16)</td>
+                            <td>是</td>
+                            <td>SUCCESS</td>
+                            <td>通信标识</br> 参考附录一</td>
+                        </tr>
+                        <tr>
+                            <td>返回信息</td>
+                            <td>returnMsg</td>
+                            <td>String(128)</td>
+                            <td>否</td>
+                            <td>签名错误</td>
+                            <td>如非空，为错误原因</td>
+                        </tr>
+
+                        <tr>
+                            <td> 数据</td>
+                            <td>data</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td> - </td>
+                            <td> - </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="commonality4">约定</h3>
+                <div style="margin:auto">
+                    <p>1. http请求头中必须加入Content-Type: application/json</p>
+                    <p>2. 所有参数使用post提交，统一编码格式为UTF-8</p>
+                    <p>3. 所有参数均为String类型</p>
+                </div>
+
+                <h3 id="commonality5">测试账号</h3>
+                <p>用户名：test</p>
+                <p>密钥：1D40019ABB0125F7C19E5700F13454122A8CA9091F8ABE609399C67771221E49</p>
+            </div>
+
+            <!-- 卡信息查询接口批量 -->
+            <div class="model" id="batch">
+                <h1>卡信息查询接口批量</h1>
+
+
+                <h3 id="batch1">接口名称</h3>
+                <p>sohan.m2m.iccidinfo.query</p>
+                <h3 id="batch2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>卡列表</td>
+                            <td>iccids</td>
+                            <td>String[50]</td>
+                            <td>是</td>
+                            <td>[“264789966”,”489149831”]</td>
+                            <td>ICCID列表，</br>每次最多查询50条</td>
+                        </tr>
+                        <tr>
+                            <td>运营商</td>
+                            <td>operator</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td> - </td>
+                            <td>运营商：1：移动2：</br>联通3：电信</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+                <h3 id="batch3">响应参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td>卡集合</td>
+                            <td>iccds</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td> - </td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>ICCID</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>417832644</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td> 卡状态</td>
+                            <td>cardStatus</td>
+                            <td>String</td>
+                            <td> 否</td>
+                            <td> 0 </td>
+                            <td>状态，1-可激活，</br>2-已激活，3-已停用，</br>4-已失效</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 卡信息查询接口单个 -->
+            <div class="model" id="single">
+                <h1 id="">卡信息查询接口单个</h1>
+
+
+                <h3 id="single1">接口名称</h3>
+                <p>sohan.m2m.iccidinfo.queryone</p>
+                <h3 id="single2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>卡ID</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>264789966</td>
+                            <td>ICCID(19位)</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+                <h3 id="single3">响应参数</h3>
+                <p>当公共参数中returnCode=SUCCESS时当且data!= null时，data对象包含以下字段</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ICCID</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>417832644</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td> 卡状态</td>
+                            <td>cardStatus</td>
+                            <td>String</td>
+                            <td> 否</td>
+                            <td> 0 </td>
+                            <td>状态，1-可激活，</br>2-已激活，3-已停用，</br>4-已失效</td>
+                        </tr>
+
+                        <tr>
+                            <td>卡激活时间</td>
+                            <td>activatedTime</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>2018-09-04 08:08:10</td>
+                            <td>yyyy-MM-dd HH:mm:ss</td>
+                        </tr>
+
+                        <tr>
+                            <td>上次更新时间</td>
+                            <td>dateUpdated</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>2018-09-04 08:08:10</td>
+                            <td>yyyy-MM-dd HH:mm:ss</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 卡片本月用量批量查询 -->
+            <div class="model" id="monthBatch">
+                <h1>卡片本月用量批量查询</h1>
+
+
+                <h3 id="monthBatch1">接口名称</h3>
+                <p>sohan.m2m.flow.queryMonth</p>
+                <h3 id="monthBatch2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>卡列表</td>
+                            <td>iccids</td>
+                            <td>String[50]</td>
+                            <td>是</td>
+                            <td>[“264789966”,”489149831”]</td>
+                            <td>ICCID列表，每次</br>最多查询50条</td>
+                        </tr>
+                        <tr>
+                            <td>运营商</td>
+                            <td>operator</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td> - </td>
+                            <td>运营商：1：</br>移动2：联通3：电信</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+                <h3 id="monthBatch3">响应参数</h3>
+                <p>当公共参数中returnCode=SUCCESS时，当data!= null时，data对象包含以下字段。</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>集合</td>
+                            <td>iccds</td>
+                            <td>List</td>
+                            <td>是</td>
+                            <td> - </td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>ICCID</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td> 是</td>
+                            <td> 264789966 </td>
+                            <td>ICCID</td>
+                        </tr>
+
+                        <tr>
+                            <td>本月已用流量</td>
+                            <td>dataUsage</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>213.64</td>
+                            <td>单位：M</td>
+                        </tr>
+
+                        <tr>
+                            <td>本月总流量</td>
+                            <td>dataControl</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>213.64</td>
+                            <td>单位：M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 卡片周期流量查询 -->
+            <div class="model" id="period">
+                <h1>卡片周期流量查询</h1>
+
+
+                <h3 id="period1">接口名称</h3>
+                <p>sohan.m2m.flow.qurycycle</p>
+                <h3 id="period2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ICCID</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>264789966</td>
+                            <td>ICCID</td>
+                        </tr>
+
+                        <tr>
+                            <td>计费周期时间</td>
+                            <td>startTime</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>2018-09-14</td>
+                            <td>格式为yyyy-MM-dd</td>
+                        </tr>
+
+                        <tr>
+                            <td>页数</td>
+                            <td>pageNumber</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>1</td>
+                            <td>说明：固定每页条数为50</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+
+
+                <h3 id="period3">响应参数</h3>
+                <p>当公共参数中returnCode=SUCCESS时且当data!= null时，data对象包含以下字段</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ICCID</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>264789966</td>
+                            <td>ICCID</td>
+                        </tr>
+
+                        <tr>
+                            <td>计费周期时间</td>
+                            <td>startTime</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td> 2018-09-14 </td>
+                            <td>格式为yyyy-MM-dd</td>
+                        </tr>
+
+                        <tr>
+                            <td>总页数</td>
+                            <td>totalPage</td>
+                            <td>string</td>
+                            <td> - </td>
+                            <td>20</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>当前页数</td>
+                            <td>pageNo</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td>1</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>详情集合开始</td>
+                            <td>detailList</td>
+                            <td>List</td>
+                            <td> - </td>
+                            <td> - </td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>用量</td>
+                            <td>usedFlow</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td>344.4</td>
+                            <td>单位Kb</td>
+                        </tr>
+
+                        <tr>
+                            <td>日期</td>
+                            <td>usedDate</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td>2018-08-14</td>
+                            <td>格式为yyyy-MM-dd hh:mm:ss</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 查询账户下全部卡片 -->
+            <div class="model" id="userAll">
+                <h1>卡片本月用量批量查询</h1>
+
+
+                <h3 id="userAll1">接口名称</h3>
+                <p>sohan.m2m.iccidinfo.quryall</p>
+                <h3 id="userAll2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>运营商：</td>
+                            <td>operator</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>1</td>
+                            <td>1 中国移动2 中国联通3 </br>中国电信</td>
+                        </tr>
+
+                        <tr>
+                            <td>开始日期(发卡日期)</td>
+                            <td>startTime</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>2018-09-14</td>
+                            <td>格式为yyyy-MM-dd</td>
+                        </tr>
+
+                        <tr>
+                            <td>结束日期(发卡日期)</td>
+                            <td>endTime</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>2018-09-14</td>
+                            <td>格式为yyyy-MM-dd</td>
+                        </tr>
+
+                        <tr>
+                            <td>每页大小</td>
+                            <td>pageSize</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>50</td>
+                            <td>每页大小</td>
+                        </tr>
+                        <tr>
+                            <td>当前页数</td>
+                            <td>pageNo</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>1</td>
+                            <td>说明：固定每页条数为50</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+
+                <h3 id="userAll3">响应参数</h3>
+                <p>当公共参数中returnCode=SUCCESS当data!= null时，data对象包含以下字段。</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>总页数</td>
+                            <td>totalPage</td>
+                            <td>string</td>
+                            <td> - </td>
+                            <td>2</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+
+                            <td>当前页数</td>
+                            <td>pageNo</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td> 3 </td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>集合</td>
+                            <td>iccids</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td> - </td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>卡状态</td>
+                            <td>cardStatus</td>
+                            <td>String</td>
+                            <td>否</td>
+                            <td>0</td>
+                            <td>状态，1-可激活，2-已激活，</br>3-已停用，4-已失效</td>
+                        </tr>
+
+                        <tr>
+                            <td>卡激活时间</td>
+                            <td>activatedTime</td>
+                            <td>String</td>
+                            <td> 否 </td>
+                            <td> 2018-09-04 08:08:10 </td>
+                            <td> yyyy-MM-dd HH:mm:ss </td>
+                        </tr>
+
+                        <tr>
+                            <td>上次更新设备时间</td>
+                            <td>dateUpdated</td>
+                            <td>String</td>
+                            <td> 否 </td>
+                            <td>2018-10-04 08:08:10</td>
+                            <td>yyyy-MM-dd HH:mm:ss</td>
+                        </tr>
+
+                        <tr>
+                            <td>是否限速</td>
+                            <td>overageLimit</td>
+                            <td>String</td>
+                            <td> - </td>
+                            <td> - </td>
+                            <td>1.是，2.否</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 激活 -->
+            <div class="model" id="live">
+                <h1>激活</h1>
+
+
+                <h3 id="live1">接口名称</h3>
+                <p>sohan.m2m.iccid.active</p>
+                <h3 id="live2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>卡列iccid</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>264789966</td>
+                            <td>Iccid(19位即可)</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+
+                <h3 id="live3">响应参数</h3>
+                <p>当公共参数中returnCode=SUCCESS当data!= null时，data对象包含以下字段</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>状态</td>
+                            <td>code</td>
+                            <td>String</td>
+                            <td> 是 </td>
+                            <td>0</td>
+                            <td>0: 成功，1失败</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>成功或失败原因</td>
+                            <td>message</td>
+                            <td>String</td>
+                            <td> 否 </td>
+                            <td>数据处理异常</td>
+                            <td> - </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- 套餐开通 -->
+            <div class="model" id="combo">
+                <h1>套餐开通</h1>
+
+
+                <h3 id="combo1">接口名称</h3>
+                <p>sohan.m2m.iccid.package</p>
+                <h3 id="combo2">请求参数</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>卡列iccid</td>
+                            <td>iccid</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>264789966</td>
+                            <td>Iccid(19位即可)</td>
+                        </tr>
+
+                        <tr>
+                            <td>套餐编号</td>
+                            <td>packageNo</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>lt-llb-1024M-12</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>标记</td>
+                            <td>statu</td>
+                            <td>String</td>
+                            <td>是</td>
+                            <td>1</td>
+                            <td>1-开通套餐 2-关闭套餐</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+
+                <h3 id="combo3">响应参数</h3>
+                <p>当公共参数中returnCode=SUCCESS当data!= null时，data对象包含以下字段。</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>参数名</th>
+                            <th>类型</th>
+                            <th>必填</th>
+                            <th>示例</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>状态</td>
+                            <td>code</td>
+                            <td>String</td>
+                            <td> 是 </td>
+                            <td>0</td>
+                            <td>0: 成功，1失败</td>
+                        </tr>
+
+                        <tr>
+
+                            <td>成功或失败原因</td>
+                            <td>message</td>
+                            <td>String</td>
+                            <td> 否 </td>
+                            <td>数据处理异常</td>
+                            <td> - </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 附录一：错误代码 -->
+            <div class="model" id="appendix1">
+                <h1>附录一：错误代码</h1>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>错误代码</th>
+                            <th>错误代码描述</th>
+                            <th>接口名称</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>SUCCESS</td>
+                            <td>成功</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>SYSTEM_ERROR</td>
+                            <td>系统异常</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>NO_AUTHORITY</td>
+                            <td>无权调用此接口</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>INVALIDSIGN</td>
+                            <td>签名错误</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>INVALID_METHOD</td>
+                            <td>无效的方法名</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>INVALID_PARAMS</td>
+                            <td>参数错误</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>INVALID_USERNAME</td>
+                            <td>无效的用户名</td>
+                            <td> - </td>
+                        </tr>
+
+                        <tr>
+                            <td>INVALID_ICCID</td>
+                            <td>无效的ICCID</td>
+                            <td> - </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!-- 附录二：签名规则 -->
+            <div class="model" id="appendix2">
+                <h1>附录二：签名规则</h1>
+                <p>签名生成的通用步骤如下：</p>
+                <p>
+                    <span style="color:dodgerblue;">第一步</span>，将所有发送或者接收到的数据为集合M，将集合M内非空参数值的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串stringA。</p>
+                <p>特别注意以下重要规则：</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;1. 参数名ASCII码从小到大排序（字典序）；</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;2. 如果参数的值为空不参与签名；</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;3. 参数名区分大小写；</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;4. sign参数不参与签名，将生成的签名与该sign值作校验；</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;5. 接口可能增加字段，验证签名时必须支持增加的扩展字段。</p>
+                <p>
+                    <span style="color:dodgerblue;">第二步</span>，在stringA最后拼接上key得到stringSignTemp字符串，并对stringSignTemp进行MD5运算，再将得到的字符串所有字符转换为大写，得到sign值signValue。</p>
+                <p>举例:</p>
+
+                <p>假设传送的参数如下：</p>
+
+                <div style="background:#F4F5F9; color:#8D8D8D;">
+                    <p>method: sohan.trade.create</p>
+                    <p>timestamp: 1352847384</p>
+                    <p>store_id: 1</p>
+                    <p>total_amount: 1</p>
+                    <p>client_trade_no: 29839821639846</p>
+                    <p>barCode: 120061098828009406</p>
+                </div>
+
+                <p>第一步：对参数按照key=value的格式，并按照参数名ASCII字典序排序如下：</p>
+
+                <div style="background:#F4F5F9; color:#8D8D8D;word-wrap:break-word;">
+                    <p style="line-height:30px;">stringA="barCode=120061098828009406&client_trade_no=29839821639846&method=sohan.trade.create& store_id=1&timestamp=1352847384&total_amount=1
+                    </p>
+                </div>
+
+                <p>第二步：拼接API密钥：</p>
+                <div style="background:#F4F5F9; color:#8D8D8D;word-wrap:break-word;">
+                    <p style="line-height:30px;">stringSignTemp="stringA&key=s8ls9#ij84&lsjeoi"; sign=MD5(stringSignTemp).toUpperCase()="9181BD58D0D3DC9ABB6DFEE1A5BF28B9";
+                    </p>
+                </div>
+                <p>最终得到最终发送的数据：</p>
+                <div style="background:#F4F5F9; color:#8D8D8D;word-wrap:break-word;">
+                    <p>"method": "sohan.trade.create",</p>
+                    <p>"timestamp": "1352847384",</p>
+                    <p>"store_id": "1",</p>
+                    <p>"total_amount":"1",</p>
+                    <p>"client_trade_no": "29839821639846",</p>
+                    <p>"barCode": "120061098828009406",</p>
+                    <p>"sign": "9181BD58D0D3DC9ABB6DFEE1A5BF28B9"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+</div>
+
+
+
+
+
+
+
+
+
+

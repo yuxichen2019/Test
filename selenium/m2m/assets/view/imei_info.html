@@ -1,0 +1,80 @@
+<div class="sh_home" id="dataCon">
+<!--新弹窗-->
+	<div class="View" id="View_new">
+		<div class="V_shadow"></div>
+		<a href="www.baidu.com"></a>
+		<div class="V_con">
+			<div class="V_con_t" style="color: #3089DC">
+				Excel导入
+			</div>
+			<div class="V_con_c" id="V_con_c_new" style="padding: 20px 0px">
+				<form id="form_new" class="layui-form layui-form-pane" enctype="multipart/form-data">
+					<!--供应商-->
+					<div style="display: block;width: 100%;height:auto;" id="yysWrap_new"></div>
+					<!--定价规则-->
+					<div style="display: block;width: 100%;height:auto;" id="yysWrap3_new"></div>
+					<!--导入条件-->
+					<div style="display: block;width: 100%;height:auto;" id="yysWrap2_new"></div>
+
+					<input type="hidden" id="userId_new" name="organizationId" />
+					<input type="hidden" id="cover_new" name="cover" value="0" />
+					<input type="hidden" id="ruleId" name="ruleId" />
+
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>客户：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<select placeholder="请选择客户" type="text" id="customerUuid" name="customerUuid" style="width: 100%; height: 35px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;padding: 5px;"></select>
+						</div>
+					</div>
+
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							模板下载：
+						</div>
+						<div style="display: inline-block;width:40%;vertical-align: top;box-sizing: border-box;">
+							<div class="excel_upload" style="display: block;height:40px;line-height:40px;width: 100%;text-align: left;margin-left: -4px;">
+								<a href="/html/template/importImeiExcel.xlsx">下载</a>
+							</div>
+						</div>
+					</div>
+
+					<!--excel文件-->
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							EXCEL文件：
+						</div>
+						<div style="display: inline-block;width:40%;vertical-align: top;box-sizing: border-box;">
+							<div class="excel" style="display: block;width: 100%;text-align: left;margin-left: -4px;">
+								<label for="deparment_data_new" style="height: 38px; display: inline-block;line-height: 38px;text-align: center;cursor: pointer; font-size: 14px;width: 280px;box-sizing: border-box;border: 1px solid #ccc;border-radius: 3px;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;vertical-align: middle;">请选择EXCEL文件</label>
+								<input type="file" id="deparment_data_new" name="uploadExcelFile" style="display: none;" />
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="V_con_b">
+				<span class="V_con_bs">导入</span>
+				<span class="V_con_bt">取消</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+

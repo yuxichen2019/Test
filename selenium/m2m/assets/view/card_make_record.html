@@ -1,0 +1,376 @@
+<style>
+	#dataCon_cs .viewC_con {
+		height: 400px !important;
+		overflow: auto !important;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 10px 0px;
+		clear: both;
+		transition: all 0.3s ease 0s;
+	}
+	
+	#dataCon_cs .recording {
+		position: absolute;
+		top: 28%;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	/*模态框*/
+	
+	#dataCon_cs .modal {
+		display: none;
+		/* 默认隐藏 */
+		position: fixed;
+		/* 根据浏览器定位 */
+		z-index: 1301;
+		/* 放在顶部 */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* 全宽 */
+		height: 100%;
+		/* 全高 */
+		overflow: auto;
+		/* 允许滚动 */
+		background-color: rgba(0, 0, 0, 0.4);
+		/* 背景色 */
+	}
+	/*模态框内容*/
+	
+	#dataCon_cs .modal-content {
+		border-radius: 5px;
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: column;
+		/*垂直排列*/
+		position: relative;
+		background-color: #fefefe;
+		margin: 7% auto;
+		/*距顶部15% 水平居中*/
+		padding: 20px;
+		border: 1px solid #888;
+		width: 768px;
+		/*自定义动画，从模态框内容上到下出现*/
+	}
+	
+	#dataCon_cs .modal-content_1 {
+		border-radius: 5px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		background-color: #fefefe;
+		margin: 0 auto;
+		margin-top: 6%;
+		margin-left: 16%;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 83%;
+		margin-right: 1%;
+	}
+	
+	@keyframes topDown {
+		from {
+			top: -300px;
+			opacity: 0
+		}
+		to {
+			top: 0;
+			opacity: 1
+		}
+	}
+	/*模态框头部*/
+	
+	#dataCon_cs .modal-header {
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: row;
+		/*水平布局*/
+		align-items: center;
+		/*内容垂直居中*/
+		justify-content: space-between;
+	}
+	/*关闭X 样式*/
+	
+	#dataCon_cs .daoruClose {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	#dataCon_cs .daoruClose:hover {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	#dataCon_cs .content_box .title {
+		display: inline-block;
+	}
+	
+	#dataCon_cs .content_box .content {
+		display: inline-block;
+		vertical-align: top;
+		width: 59%;
+		height: 100%;
+		padding-right: 50px;
+	}
+	
+	#dataCon_cs .verify {
+		position: relative;
+		left: 86px;
+		height: 28px;
+		line-height: 24px;
+		display: inline-block;
+		padding: 0px 13px;
+		border: 1px solid rgb(48, 137, 220);
+		background-color: rgb(48, 137, 220);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 6px;
+	}
+	
+	#dataCon_cs .content_box {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	
+	#dataCon_cs .content_box .title {
+		display: inline-block;
+		vertical-align: top;
+		width: 40%;
+		height: 100%;
+		text-align: right;
+		padding-right: 20px;
+		padding-left: 10px;
+		font-size: 14px;
+	}
+	
+	#dataCon_cs .content_box .content input {
+		width: 80%;
+		height: 30px;
+		border-bottom: 1px solid rgb(204, 204, 204);
+		font-size: 14px;
+		margin-top: 6px;
+	}
+	
+	#dataCon_cs .content_box .content select {
+		width: 80%;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px 10px;
+		border: 1px solid rgb(222, 228, 241);
+		background-color: rgb(244, 248, 250);
+		color: rgb(117, 117, 117);
+		font-size: 13px;
+		border-radius: 3px;
+		user-select: none;
+		cursor: pointer;
+		position: relative;
+		margin-top: 5px;
+		box-shadow: none;
+	}
+	
+	#dataCon_cs .content_box textarea {
+		padding: 8px;
+		margin-top: 13px;
+		font-size: 14px;
+		color: rgb(117, 117, 117);
+	}
+	
+	#dataCon_cs .content_box .remark {
+		width: 80%;
+		height: 100px;
+	}
+	
+	#dataCon_cs .model_title {
+		cursor: move;
+		height: 35px;
+		width: 100%;
+		font-size: 17px;
+		border-bottom: 1px solid rgb(229, 229, 229);
+		position: relative;
+		line-height: 15px;
+		text-align: center;
+		color: rgb(51, 51, 51);
+	}
+	
+	.modal-body {
+		margin: 15px 0;
+		overflow-y: auto;
+	}
+	
+	#dataCon_cs .bottom {
+		width: 100%;
+		height: 38px;
+		font-size: 18px;
+		box-sizing: border-box;
+		bottom: 0px;
+		border-top: 1px solid rgb(229, 229, 229);
+		left: 0%;
+		line-height: 54px;
+		text-align: center;
+	}
+	
+	#dataCon_cs .bottom_btn {
+		color: rgb(255, 255, 255);
+		background-color: rgb(48, 137, 220);
+		font-size: 13px;
+		padding: 4px 14px;
+		border-radius: 2px;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+	
+	#dataCon_cs .ly_tabTitle {
+		height: 40px;
+		background-color: rgb(255, 255, 255);
+		border-bottom: none;
+		box-shadow: rgb(204, 204, 204) 0px 0.5px 2px;
+		position: relative;
+		z-index: -1 !important;
+		padding-left: 80px;
+	}
+	/*.dtcWrap {
+		margin-top: 40px;
+	}*/
+	
+	#dataCon_cs .excel_upload {
+		height: 40px;
+		line-height: 32px;
+		font-size: 15px;
+		display: block;
+		width: 100%;
+		text-align: left;
+		margin-left: -4px;
+	}
+	
+	#dataCon_cs .gain {
+		position: absolute;
+		top: 28%;
+		margin-left: 100px;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	
+	.fileB {
+		background-color: initial;
+		border: 1px solid #ccc;
+		padding: 5px 10px;
+		border-radius: 4px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	
+	.exFile {
+		height: 35px;
+		padding: 0 10px;
+		display: inline-block;
+		line-height: 35px;
+		text-align: center;
+		cursor: pointer;
+		font-size: 14px;
+		box-sizing: border-box;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		vertical-align: middle;
+	}
+	
+	#renewalFeeModal .content_box .content .radioInput input {
+		-webkit-appearance: radio;
+		height: 14px;
+		width: 14px;
+		margin-right: 4px;
+		position: relative;
+		top: 2px;
+	}
+	
+	#renewalFeeModal .content_box .content .radioInput {
+		margin-right: 10px;
+	}
+	#model_body_v{
+		margin-top: 15px;
+	}
+</style>
+<div class="sh_home" id="dataCon_cs">
+	<!--新弹窗-->
+	<div id="myModaldaoru" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">导入</h2>
+					<span class="daoruClose" id="daoruClose">×</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="content_box">
+					<div class="title">*ICCID:</div>
+					<div class="content">
+						<textarea readonly="readonly" id="stateIccid" class="remark" wrap="virtual" style="height: 100px;margin-bottom: 10px;margin-top: 0;"></textarea>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*数量:</div>
+					<div class="content">
+						<span id="stateNum" style="color:red;">0</span>
+					</div>
+				</div>
+				<div class="content_box" id="hbFile1">
+					<div class="title" for="file">选择文件:</div>
+					<div class="content">
+						<form id="msmForm" enctype="multipart/form-data" style="display: inline-block;">
+							<label class="fileB" for="file" style="position: relative;">
+								<input id="daoruFile" name="uploadExcelFile" type="file" style="position: absolute;left:0;top: 0;width: 100%;bottom: 0;opacity: 0;">
+								<span id="daoruText">选择</span> 	
+							</label>
+						</form>
+						<a href="/html/template/importIccidExcel.xlsx" style="text-decoration: underline; font-size: 14px;" id="xufeiUpload">下载模板</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="content_box">
+				<div class="title">*更新状态:</div>
+				<div class="content">
+					<select id="status">
+						<option value="">选择更新状态</option>
+						<option value="1">取消</option>
+						<option value="2">恢复</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="daoruSave">确定</span>
+				<span class="bottom_btn daoruCancel" id="daoruCancel">取消</span>
+			</div>
+		</div>
+	</div>
+</div>

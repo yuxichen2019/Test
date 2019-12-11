@@ -1,0 +1,449 @@
+<style>
+	.viewC_con {
+		height: 400px !important;
+		overflow: auto !important;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 10px 0px;
+		clear: both;
+		transition: all 0.3s ease 0s;
+	}
+	
+	.recording {
+		position: absolute;
+		top: 28%;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+	/*模态框*/
+	
+	.modal {
+		display: none;
+		/* 默认隐藏 */
+		position: fixed;
+		/* 根据浏览器定位 */
+		z-index: 1;
+		/* 放在顶部 */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* 全宽 */
+		height: 100%;
+		/* 全高 */
+		overflow: auto;
+		/* 允许滚动 */
+		background-color: rgba(0, 0, 0, 0.4);
+		/* 背景色 */
+	}
+	/*模态框内容*/
+	
+	.modal-content {
+		border-radius: 5px;
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: column;
+		/*垂直排列*/
+		position: relative;
+		background-color: #fefefe;
+		margin: 7% auto;
+		/*距顶部15% 水平居中*/
+		padding: 20px;
+		border: 1px solid #888;
+		width: 768px;
+		/*自定义动画，从模态框内容上到下出现*/
+	}
+	
+	.modal-content_1 {
+		border-radius: 5px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		background-color: #fefefe;
+		margin: 0 auto;
+		margin-top: 6%;
+		margin-left: 16%;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 83%;
+		margin-right: 1%;
+	}
+	
+	@keyframes topDown {
+		from {
+			top: -300px;
+			opacity: 0
+		}
+		to {
+			top: 0;
+			opacity: 1
+		}
+	}
+	/*模态框头部*/
+	
+	.modal-header {
+		display: flex;
+		/*采用flexbox布局*/
+		flex-direction: row;
+		/*水平布局*/
+		align-items: center;
+		/*内容垂直居中*/
+		justify-content: space-between;
+	}
+	/*关闭X 样式*/
+	
+	.close {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	
+	.close:hover {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.content_box .title {
+		display: inline-block;
+	}
+	
+	.content_box .content {
+		display: inline-block;
+		vertical-align: top;
+		width: 59%;
+		height: 100%;
+		padding-right: 50px;
+	}
+	
+	.verify {
+		position: relative;
+		left: 86px;
+		height: 28px;
+		line-height: 24px;
+		display: inline-block;
+		padding: 0px 13px;
+		border: 1px solid rgb(48, 137, 220);
+		background-color: rgb(48, 137, 220);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 6px;
+	}
+	
+	.content_box {
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+	}
+	
+	.content_box .title {
+		display: inline-block;
+		vertical-align: top;
+		width: 40%;
+		height: 100%;
+		text-align: right;
+		padding-right: 20px;
+		padding-left: 10px;
+		font-size: 14px;
+	}
+	
+	.content_box .content input {
+		width: 100%;
+		height: 30px;
+		border-bottom: 1px solid rgb(204, 204, 204);
+		font-size: 14px;
+		margin-top: 6px;
+	}
+	
+	.content_box .content select {
+		width: 80%;
+		height: 30px;
+		line-height: 30px;
+		padding: 0px 10px;
+		border: 1px solid rgb(222, 228, 241);
+		background-color: rgb(244, 248, 250);
+		color: rgb(117, 117, 117);
+		font-size: 13px;
+		border-radius: 3px;
+		user-select: none;
+		cursor: pointer;
+		position: relative;
+		margin-top: 5px;
+		box-shadow: none;
+	}
+	
+	.content_box textarea {
+		padding: 8px;
+		margin-top: 13px;
+		font-size: 14px;
+		color: rgb(117, 117, 117);
+	}
+	
+	.model_title {
+		cursor: move;
+		height: 35px;
+		width: 100%;
+		font-size: 17px;
+		border-bottom: 1px solid rgb(229, 229, 229);
+		position: relative;
+		line-height: 15px;
+		text-align: center;
+		color: rgb(51, 51, 51);
+	}
+	
+	#myModal .modal-body {
+		margin: 15px 0;
+		overflow-y: auto;
+	}
+	
+	.bottom {
+		width: 100%;
+		height: 38px;
+		font-size: 18px;
+		box-sizing: border-box;
+		bottom: 0px;
+		border-top: 1px solid rgb(229, 229, 229);
+		left: 0%;
+		line-height: 54px;
+		text-align: center;
+	}
+	
+	.bottom_btn {
+		color: rgb(255, 255, 255);
+		background-color: rgb(48, 137, 220);
+		font-size: 13px;
+		padding: 4px 14px;
+		border-radius: 2px;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+	
+	.ly_tabTitle {
+		height: 40px;
+		background-color: rgb(255, 255, 255);
+		border-bottom: none;
+		box-shadow: rgb(204, 204, 204) 0px 0.5px 2px;
+		position: relative;
+		z-index: -1 !important;
+		padding-left: 80px;
+	}
+	/*.dtcWrap {
+		margin-top: 40px;
+	}*/
+	
+	.excel_upload {
+		height: 40px;
+		line-height: 32px;
+		font-size: 15px;
+		display: block;
+		width: 100%;
+		text-align: left;
+		margin-left: -4px;
+	}
+	
+	.gain {
+		position: absolute;
+		top: 28%;
+		margin-left: 100px;
+		display: inline-block;
+		padding: 6px 12px;
+		background-color: rgb(255, 127, 91);
+		color: rgb(255, 255, 255);
+		width: auto;
+		font-size: 13px;
+		margin-right: 8px;
+		border-radius: 2px;
+		vertical-align: top;
+		cursor: pointer;
+		user-select: none;
+		margin-top: 7px;
+	}
+</style>
+<div class="sh_home" id="dataCon">
+	<!--新弹窗-->
+	<div class="View" id="View_new">
+		<div class="V_shadow"></div>
+		<a href="www.baidu.com"></a>
+		<div class="V_con">
+			<div class="V_con_t" style="color: #3089DC">
+				Excel导入
+			</div>
+			<div class="V_con_c" id="V_con_c_new" style="padding: 20px 0px">
+				<form id="form_new" class="layui-form layui-form-pane" enctype="multipart/form-data">
+					<!--供应商-->
+					<div style="display: block;width: 100%;height:auto;" id="yysWrap_new"></div>
+					<!--定价规则-->
+					<div style="display: block;width: 100%;height:auto;" id="yysWrap3_new"></div>
+					<!--导入条件-->
+					<div style="display: block;width: 100%;height:auto;" id="yysWrap2_new"></div>
+
+					<input type="hidden" id="userId_new" name="organizationId" />
+					<input type="hidden" id="cover_new" name="cover" value="0" />
+					<input type="hidden" id="ruleId" name="ruleId" />
+
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>供应商：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<input placeholder="请输入供应商" type="text" id="supplierUuid" name="supplierUuid" style="width: 100%; height: 30px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;"></div>
+					</div>
+
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>客户：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<select placeholder="请选择客户" type="text" id="customerUuid" name="customerUuid" style="width: 100%; height: 35px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;padding: 5px;"></select>
+						</div>
+					</div>
+					
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>套餐：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<select placeholder="请选择套餐" type="text" id="tagUuid" name="tagUuid" style="width: 100%; height: 35px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;padding: 5px;"></select>
+						</div>
+					</div>
+					
+						<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>激活类型：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<select placeholder="请选择激活类型" type="text" id="activationType" name="activationType" style="width: 100%; height: 35px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;padding: 5px;">
+							     <option value="">请选择激活类型</option>
+							       <option value="1">手动激活</option>
+							         <option value="2">自动激活</option>
+							</select>
+						</div>
+					</div>
+					
+						<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>业务类型：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<select placeholder="请选择业务类型" type="text" id="businessType" name="businessType" style="width: 100%; height: 35px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;padding: 5px;">
+							     <option value="">请选择业务类型</option>
+							       <option value="1">语音卡</option>
+							         <option value="2">流量卡</option>
+							</select>
+						</div>
+					</div>
+					
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							<span style="color:red">*</span>卡片类型：
+						</div>
+						<div style="display: inline-block;
+							 vertical-align: top; width: 59%; height: 100%; padding-right: 50px;">
+							<select placeholder="请选择卡片类型" type="text" id="cardType" name="cardType" style="width: 100%; height: 35px;
+							 	 border-bottom: 1px solid rgb(204, 204, 204); 
+							     font-size: 14px;padding: 5px;">
+							     <option value="">请选择卡片类型</option>
+							       <option value="1">sim卡</option>
+							         <option value="2">贴片卡</option>
+							          <option value="3">emis卡</option>
+							</select>
+						</div>
+					</div>
+
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							模板下载：
+						</div>
+						<div style="display: inline-block;width:40%;vertical-align: top;box-sizing: border-box;">
+							<div class="excel_upload" style="display: block;height:40px;line-height:40px;width: 100%;text-align: left;margin-left: -4px;">
+								<a href="/html/template/importIccidExcel.xlsx">下载</a>
+							</div>
+						</div>
+					</div>
+
+					<!--excel文件-->
+					<div style="height:40px">
+						<div style="display: inline-block;width:40%;vertical-align: top;font-size: 14px;text-align: right;
+        				box-sizing: border-box;padding-right: 20px;padding-top:8px;">
+							EXCEL文件：
+						</div>
+						<div style="display: inline-block;width:40%;vertical-align: top;box-sizing: border-box;">
+							<div class="excel" style="display: block;width: 100%;text-align: left;margin-left: -4px;">
+								<label for="deparment_data_new" style="height: 38px; display: inline-block;line-height: 38px;text-align: center;cursor: pointer; font-size: 14px;width: 280px;box-sizing: border-box;border: 1px solid #ccc;border-radius: 3px;text-overflow:ellipsis;overflow: hidden;white-space: nowrap;vertical-align: middle;">请选择EXCEL文件</label>
+								<input type="file" id="deparment_data_new" name="uploadExcelFile" style="display: none;" />
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="V_con_b">
+				<span class="V_con_bs">导入</span>
+				<span class="V_con_bt">取消</span>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 划拨模态框 -->
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">划拨</h2>
+					<span id="closeBtn" class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body" id="model_body_v">
+				<div class="content_box">
+					<div class="title">*客户:</div>
+					<div class="content">
+						<select id="customerUuid1" name="customerUuid">
+						</select>
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="save">保存</span>
+				<span class="bottom_btn" id="cancelBtn">取消</span>
+			</div>
+		</div>
+
+	</div>
+</div>

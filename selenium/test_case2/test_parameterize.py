@@ -19,6 +19,8 @@ import math
 def test_pow(base,exponent,expected):
     assert math.pow(base,exponent) == expected  #math模块的pow()用于计算x的y次方
 
+
+
 '''
 pytest -u test_parameterize.py
        -v 参数用于增加测试用例的冗长
@@ -30,6 +32,8 @@ pytest tets_fixtures_o2.py::TestMultiply::test_numbers_5_6 指定特定类或方
  
 pytest -k add test_assert.py  指定执行用例名称包含add的用例
 
+
+创建run_tests.py,在文件中通过数组指定参数，每个参数为数组中的一个元素
 import pytest
 if __name__ == '__main__':
     pytest.main(['-s','./test_dir'])

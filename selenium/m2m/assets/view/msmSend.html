@@ -1,0 +1,54 @@
+<div class="sh_home" id="dataCon">
+	<!--短信发送-->
+	<div id="smsSend" class="modal myModel">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="model_title">短信发送</h2>
+					<span class="close">×</span>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="content_box">
+					<div class="title">*接受ICCID:</div>
+					<div class="content">
+						<textarea name="sentTo" id="sentTo" rows="6" cols=""></textarea>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">数量:</div>
+					<div class="content">
+						<span id="sentToNum" style="color:red;">0</span>
+					</div>
+				</div>
+				<div class="content_box" id="hbFile1">
+					<div class="title" for="file">选择文件:</div>
+					<div class="content">
+						<form id="msmForm" enctype="multipart/form-data" style="display: inline-block;">
+							<label class="fileB" for="file" id="huaboChoose" style="position: relative;">
+							<input id="huaboFile" name="uploadExcelFile" type="file" style="position: absolute;left:0;top: 0;width: 100%;bottom: 0;opacity: 0;">
+							<span id="huaboText">选择</span> 	
+						</label>
+						</form>
+						<a href="/html/template/importIccidExcel.xlsx" style="text-decoration: underline; font-size: 14px;" id="xufeiUpload">下载模板</a>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">短信模板:</div>
+					<div class="content">
+						<div class="selectWrap" id="selectWrap" style="width:80%"></div>
+					</div>
+				</div>
+				<div class="content_box">
+					<div class="title">*短信内容:</div>
+					<div class="content">
+						<textarea name="sentContent" id="sentContent" rows="6" cols=""></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer bottom">
+				<span class="bottom_btn" id="stateSave">确定</span>
+				<span class="bottom_btn cancel">取消</span>
+			</div>
+		</div>
+	</div>
+</div>
