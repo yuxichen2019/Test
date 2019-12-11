@@ -35,7 +35,31 @@ def test_add_3():
 def test_add_4():
     assert add(17,22) >= 38
 
+def test_in():
+    a = 'hello'
+    b = 'he'
+    assert b in a
 
+def test_not_in():
+    a = 'hello'
+    b = 'heo'
+    assert b not in a
+
+def test_ture_1():
+    assert is_prime(13)
+
+def test_ture_2():
+    assert is_prime(7) is True
+
+def test_ture_3():
+    assert not is_prime(4)
+
+
+def test_ture_4():
+    assert is_prime(6) is not True
+
+def test_false_1():
+    assert is_prime(8) is False
 
 if __name__ == '__main__':
     pytest.main()
