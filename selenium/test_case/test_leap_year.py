@@ -22,7 +22,7 @@ class TsetLeapYear(unittest.TestCase):
         self.assertEqual(le.answer(),'2100不是闰年')
 
     def test_2004(self):
-        le = Qr(2004)
+        le = Q(2004)
         self.assertEqual(le.answer(),'2004是闰年')
 
     def test_2050(self):
