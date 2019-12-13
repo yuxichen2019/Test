@@ -24,6 +24,7 @@ def test_fail_rerun():
 
 
 
+
 三.pytest-parallel
 pip install pytest-parallel
 创建test_parallel.py ,在每条测试用例中分别设置sleep()来模拟运行时间较长的测试用例
