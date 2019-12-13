@@ -25,6 +25,7 @@ def test_fail_rerun():
 
 
 
+
 三.pytest-parallel
 pip install pytest-parallel
 创建test_parallel.py ,在每条测试用例中分别设置sleep()来模拟运行时间较长的测试用例
@@ -33,5 +34,14 @@ pip install pytest-parallel
 >pytest -q test_parallel.py
 
 pytest -q test_parallel.py --tests-per-worker auto
-pytest -q test_parallel.py --tests-per-worker auto
+
+更多用法：
+1运行两个工作线程，每个工作线程一次运行一个测试
+pytest --workers 2
+2运行4个工人（假设是四核机器），每个工人一个测试
+pytest --workers auto
+3运行一个线程，一次执行4个测试
+pytest --tests-per-worker 4
+4.......
+
 '''
