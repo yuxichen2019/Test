@@ -9,7 +9,9 @@
 from selenium import webdriver
 from time import sleep
 
+
 options = webdriver.ChromeOptions()
+
 prefs = {'profile.default_content_settings.popups':0,#禁止弹出下载窗口
          'download.default_directory': r'E:\yuxichen\file' } #设置下载路径
 options.add_experimental_option('prefs',prefs)

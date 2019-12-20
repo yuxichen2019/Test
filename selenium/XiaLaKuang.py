@@ -47,4 +47,4 @@ print(alret_text)
 sleep(1)
 alret.accept()
 
-dr.quit()
+#dr.quit()
