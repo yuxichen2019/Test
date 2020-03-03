@@ -26,6 +26,7 @@ sleep(2)
 # dr.find_element_by_xpath('/html/body/div[3]/div[2]/div[6]/div[2]/div/div/p[3]').click()
 # dr.find_element_by_class_name('viewC_btnSave').click()
 text=dr.find_elements_by_xpath('//*[@id="dataCon_cus"]/div[2]/div[2]/div/div[3]')
+
 for i in text:
     list.append(i.text)
 
