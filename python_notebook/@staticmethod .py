@@ -4,7 +4,7 @@ class Person(object):
     def __init__(self, name):
         self.name = name
 
-   # @staticmethod  # 把eat方法变为静态方法
+    @staticmethod  # 把eat方法变为静态方法
     def eat(self):
         print("%s is eating" % self.name)
 

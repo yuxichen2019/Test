@@ -13,6 +13,7 @@
 import time
 from selenium import webdriver
 
+
 dr=webdriver.Chrome()
 dr.implicitly_wait(10)
 dr.get('http://www.baidu.com')
@@ -35,6 +36,7 @@ for handle in all_handles:
         dr.find_element_by_name('phone').send_keys('15112342277')
         time.sleep(2)
         dr.close()
+
 
 
 #回到搜索窗口

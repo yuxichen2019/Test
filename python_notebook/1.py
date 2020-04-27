@@ -1,37 +1,109 @@
-# -*- coding: utf-8 -*- 
-# 2019/12/19 10:22 
+
+
+
+
+# -*- coding: utf-8 -*-
+# 2019/10/23 15:48
 # Test
-# 1.py 
+# Upload_File.py
+# hanwenlu
+
+#104测试环境下入库一张卡片
+#http://192.168.1.104:7300/html/index.html
+
+
+import os
+import xlrd
+
+# -*- coding: utf-8 -*-
+# 2019/12/25 18:09
+# Product
+# Mysql.py
 # company
 
+import pymysql
 
-from selenium import webdriver
-from selenium.webdriver.support.select import Select
-from time import sleep
+class Mysql:
+    """
+    对pymysql的简单封装
+    """
+    def __init__(self):
+        self.host = '192.168.1.104'
+        self.port = 3306
+        self.user = "han"
+        self.pwd = "SY666.com"
+        self.db = "icms"
 
-list=[]
-dr = webdriver.Chrome()
-dr.get('http://192.168.1.104:7300/html/index.html')
-dr.find_element_by_id('lg_user_input').send_keys('admin')
-dr.find_element_by_id('lg_pw_input').send_keys('123456')
-dr.find_element_by_class_name('lg_login_btn_lg').click()
-sleep(2)
-dr.find_element_by_xpath('/html/body/div/div[1]/div/div[4]/div[1]/div[2]/p/span').click()
-sleep(2)
-# dr.find_element_by_name('add').click()
-# sleep(1)
-# dr.find_element_by_xpath('/html/body/div[3]/div[2]/div[4]/div[2]/div').click()
-# dr.find_element_by_xpath('/html/body/div[3]/div[2]/div[4]/div[2]/div/div/p[2]').click()
-# dr.find_element_by_xpath('/html/body/div[3]/div[2]/div[6]/div[2]/div').click()
-# dr.find_element_by_xpath('/html/body/div[3]/div[2]/div[6]/div[2]/div/div/p[3]').click()
-# dr.find_element_by_class_name('viewC_btnSave').click()
-text=dr.find_elements_by_xpath('//*[@id="dataCon_cus"]/div[2]/div[2]/div/div[3]')
+    def __GetConnect(self):
+        """
+        得到连接信息
+        返回: conn.cursor()
+        """
+        if not self.db:
+            raise(NameError,"没有设置数据库信息")
+        self.conn = pymysql.connect(host=self.host,user=self.user,password=self.pwd,database=self.db,charset="utf8")
+        cur = self.conn.cursor()
+        if not cur:
+            raise(NameError,"连接数据库失败")
+        else:
+            return cur
 
-for i in text:
-    list.append(i.text)
+    def execQuery(self,sql):
+        """
+        执行查询语句
+        返回的是一个包含tuple的list，list的元素是记录行，tuple的元素是每行记录的字段
 
-for j in list:
-    if '测试客户' in j:
-        assert False
-    else:
-        assert True
+        调用示例：
+                ms = MYSQL(host="localhost",user="sa",pwd="123456",db="PythonWeiboStatistics")
+                resList = ms.ExecQuery("SELECT id,NickName FROM WeiBoUser")
+                for (id,NickName) in resList:
+                    print str(id),NickName
+        """
+        cur = self.__GetConnect()
+        cur.execute(sql)
+        resList = cur.fetchall()
+
+        #查询完毕后必须关闭连接
+        self.conn.close()
+        return resList
+
+    def execNonQuery(self,sql):
+        """
+        执行非查询语句
+
+        调用示例：
+            cur = self.__GetConnect()
+            cur.execute(sql)
+            self.conn.commit()
+            self.conn.close()
+        """
+        cur = self.__GetConnect()
+        cur.execute(sql)
+        self.conn.commit()
+        self.conn.close()
+
+    # iccid_path = os.path.abspath(r'E:\yuxichen\Product\test_dir\data\ruku_iccid.xlsx')
+    #
+    #
+    # def get_iccid(self):
+    #     data = xlrd.open_workbook(self.iccid_path)
+    #     table = data.sheets()[0]
+    #     self.iccid = table.cell(1, 0).value
+    #     return self.iccid
+
+# data = xlrd.open_workbook(iccid_path)
+# table = data.sheets()[0]
+# iccid = table.cell(1, 0).value
+# print(iccid)
+# mq =Mysql()
+# sql='''
+#         SELECT remark FROM `t_card_store` where iccid = '%s'
+#         '''
+#
+#
+# data=(mq.get_iccid())
+#
+# customername = mq.execQuery(sql % data)
+# print(customername[0][0])
+
+
