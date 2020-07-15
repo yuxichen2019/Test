@@ -19,16 +19,26 @@ from selenium.webdriver import  ActionChains
 from selenium.common.exceptions import UnexpectedAlertPresentException
 
 dr = webdriver.Chrome()
-dr.get('https://www.helloweba.com/demo/2017/unlock/')
+dr.get('https://upay.10010.com/npfweb/npfcellweb/phone_recharge_fill.htm')
 
-slider = dr.find_element_by_xpath('/html/body/div/div/div/div[1]/div[1]/div[3]')
+dr.maximize_window()
+
+number=dr.find_element_by_xpath('//input[@id="number"]')
+number.send_keys(13008803217)
+sleep(1)
+dr.find_element_by_id('anyAmount').send_keys("1")
+dr.find_element_by_id('submitButton').click()
+
+frame = dr.find_element_by_id('tcaptcha_popup')
+dr.switch_to.frame(frame)
+slider = dr.find_element_by_xpath("//*[@id='tcaptcha_drag_thumb']")
 action = ActionChains(dr)
 action.click_and_hold(slider).perform()
 
 for index in range(200):
     try:
-        #移动鼠标，x,y
-        action.move_by_offset(2,0).perform()
+        action.move_by_offset(50, 0).perform()
+        sleep(0.2)
     except UnexpectedAlertPresentException:
         break
 
